@@ -95,7 +95,14 @@ else (expression) {
 switch语句
 ``` Java
 switch (expression) {
-    case
+    case value:
+        code;
+        break;
+    case value:
+        code;
+        break;
+    default:
+        code;
 }
 ```
 
