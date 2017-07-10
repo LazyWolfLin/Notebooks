@@ -15,7 +15,7 @@ Python中的变量无需定义数据类型。
 
 ## 运算符
 
-|符号|作用|
+|运算符|作用|
 |---|---|
 |+|加|
 |-|减|
@@ -40,57 +40,104 @@ Python中的变量无需定义数据类型。
 |and|与|
 |or|或|
 
+## 流程控制
+
+### if语句
+
+``` Python
+if expression :
+    code
+```
+
+``` Python
+if expression :
+    code
+else :
+    code
+```
+
+``` Python
+if expression :
+    code
+elif expression :
+    code
+else :
+    code
+```
+
+### for语句
+
+``` Python
+for value in set :
+    code
+```
+
+``` Python
+for value in set :
+    code
+else :
+    code
+```
+
+### while语句
+
+``` Python
+while expression :
+    code
+```
+
+``` Python
+while expression :
+    code
+else :
+    code
+```
+
+### break语句
+
+中断当前循环语句
+``` Python
+    break
+```
+
+### continue语句
+跳过当前循环块中的剩余语句并继续循环的下一次迭代
+``` Python
+    continue
+```
+
+## 内建函数
+
 ## 函数
 
-### 内建函数
-
-### 自定义函数
+### 函数定义
 
 ``` Python
-def function(arg...):
+def function(arg...) :
     code
-    return
 ```
+### 局部变量
 
-## 逻辑控制
+在函数中定义的变量均为局部变量，它们的作用域是变量定义所在的块。
 
-if语句
+### global语句
+
+在函数内声明目标变量为全局变量
 ``` Python
-if expression:
-    code
+    global value
 ```
 
-if-else语句
-``` Python
-if expression:
-    code
-else :
-    code
-```
+### return语句
 
-if-elif-else语句
-``` Python
-if expression:
-    code
-elif expression:
-    code
-else :
-    code
-```
+中断函数执行，同时还可以选择从函数中返回一个值。
 
-## 循环控制
+### 默认参数值
 
-for语句
-``` Python
-for value in set:
-    code
-```
+### 关键字参数
 
-while语句
-``` Python
-while expression:
-    code
-```
+### 可变参数
+
+### DocStrings
 
 ## 字符串
 
