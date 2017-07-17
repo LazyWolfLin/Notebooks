@@ -46,7 +46,7 @@ Python中的变量无需定义数据类型。
 
 ## 流程控制
 
-### if语句
+### `if`语句
 
 ``` Python
 if expression :
@@ -69,7 +69,7 @@ else :
     code
 ```
 
-### for语句
+### `for`语句
 
 ``` Python
 for value in set :
@@ -83,7 +83,7 @@ else :
     code
 ```
 
-### while语句
+### `while`语句
 
 ``` Python
 while expression :
@@ -97,7 +97,7 @@ else :
     code
 ```
 
-### break语句
+### `break`语句
 
 中断当前循环语句
 
@@ -105,7 +105,7 @@ else :
     break
 ```
 
-### continue语句
+### `continue`语句
 
 跳过当前循环块中的剩余语句并继续循环的下一次迭代
 
@@ -127,7 +127,7 @@ def function(arg...) :
 
 在函数中定义的变量均为局部变量，它们的作用域是变量定义所在的块。
 
-### global语句
+### `global`语句
 
 在函数内声明目标变量为全局变量。
 
@@ -135,7 +135,7 @@ def function(arg...) :
     global value
 ```
 
-### return语句
+### `return`语句
 
 中断函数执行，同时还可以选择从函数中返回一个值。
 
@@ -197,9 +197,9 @@ function(arg = value)
 
 ## 列表
 
-列表由一系列有序元素组成。
+列表（`list`）由一系列有序元素组成。
 
-Python使用方括号（`[]`）来表示列表，用逗号（`,`）分隔列表中元素。
+Python使用方括号（`[]`）来表示列表，用逗号（`,`）分隔列表中的元素。
 
 列表的方法
 |方法|功能|
@@ -221,16 +221,39 @@ Python使用方括号（`[]`）来表示列表，用逗号（`,`）分隔列表�
 
 ## 元组
 
+元组(`tuple`)由多个不可更改的无序元素组成。
+
+Python使用方括号（`()`）来表示元组，用逗号（`,`）分隔元组中的元素。
+
 ## 字典
+
+字典(`dict`)由多个无序的键值对组成。
+
+Python使用花括号（`{}`）来表示字典，用（`:`）组成键值对，用逗号（`,`）分隔字典中的键值对。
+
+运算符
+|运算符|功能|
+|---|---|
+|del|删除字典中指定键值对|
 
 ## 集合
 
+集合（`set`）是简单对象的无序集合。
+
 ## 模块
 
-### import语句
+### `import`语句
 
 import语句用于导入模块。
 
 ``` Python
-import sys
+import module
 ```
+
+``` Python
+from module import var/method
+```
+
+### `__name__`
+
+模块名称
