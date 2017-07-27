@@ -120,7 +120,7 @@ else :
 ### 函数定义
 
 ``` Python
-def function(arg...) :
+def FunctionName(arg...) :
     code
 ```
 ### 局部变量
@@ -148,7 +148,7 @@ def function(arg...) :
 在函数定义时附加一个赋值运算符（`=`）来为参数指定默认参数值。
 
 ``` Python
-def function(arg = value) :
+def FunctionName(arg = value) :
     code
 ```
 
@@ -161,7 +161,7 @@ def function(arg = value) :
 在调用函数时，可以通过使用形参名传递实参而非根据位置传递实参。
 
 ``` Python
-function(arg = value)
+FunctionName(arg = value)
 ```
 
 ### 可变参数
@@ -257,3 +257,30 @@ from module import var/method
 ### `__name__`
 
 模块名称
+
+## 类
+
+### 类定义
+
+``` Python
+class ClassName :
+    def __init__(self, arg...) :
+        code
+    
+    def MethodName(self, arg...) :
+        code
+```
+
+### `self`
+
+### `__init__`方法
+
+`__init__`方法会在创建类对象的实例时被调用，用于对实例进行初始化的方法。
+
+### 类变量
+
+类变量可以被该类的所有实例访问，是类的所有实例共同拥有的。
+
+### 对象变量
+
+对象变量是每个类实例独立拥有的，只能被所属实例访问。
