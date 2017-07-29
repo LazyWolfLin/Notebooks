@@ -284,3 +284,21 @@ class ClassName :
 ### 对象变量
 
 对象变量是每个类实例独立拥有的，只能被所属实例访问。
+
+### 私有变量
+
+Python的类成员是公有的，除了使用双下划线作为名称前缀成为私有变量的数据成员。
+
+### 继承派生
+
+Python的继承和派生只需要在派生类的定义后面加上基类元组。Python的默认`__init__`方法会自动基类的`__init__`方法；而自定义的`__init__`方法则需显示调用基类的`__init__`方法。
+
+``` Python
+class Base :
+    def __init__(self)
+        code
+class Derived(Base) :
+    def __init__(self)
+        Base.__init__(self)
+        code
+```
