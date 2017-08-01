@@ -302,3 +302,30 @@ class Derived(Base) :
         Base.__init__(self)
         code
 ```
+
+## 异常
+
+### `raise`
+
+使用`raise`语句可以抛出异常类`Exception`及其派生类作为一个异常。
+
+### `try ... except`
+
+``` Python
+try :
+    code
+except :
+    code
+else :
+    code
+finally :
+    code
+```
+
+### `with ... as`
+
+`with`将自动调用`__enter__()`方法，并将结果传给`as`后的变量，在代码体运行完成后，`with`还将自动调用`__exit__()`方法，清理环境。
+``` Python
+with code as ValueName :
+    code
+```
