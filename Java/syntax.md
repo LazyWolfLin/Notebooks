@@ -82,20 +82,22 @@
 
 ## 运算符和表达式
 
-## 流程控制语句
+## 流程控制
 
-### 选择控制语句
+### 逻辑控制
 
 if语句
 ``` Java
 if (expression) {
     code;
 }
-
+```
+if-else语句
+``` Java
 if (expression) {
     code;
 }
-else (expression) {
+else {
     code;
 }
 ```
@@ -114,14 +116,16 @@ switch (expression) {
 }
 ```
 
-### 循环控制语句
+### 循环控制
 
 while语句
 ``` Java
-while (expression){
+while (expression) {
     code;
 }
-
+```
+do-while语句
+``` Java
 do {
     code;
 }while (expression);
