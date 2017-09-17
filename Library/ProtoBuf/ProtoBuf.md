@@ -15,8 +15,8 @@ message example {
 }
 ```
 
-使用 `proto3` 编写一份 `.proto` 文件时，必须在文件的第一个非空且非注释行声明此文件使用 `proto3` 语法，否则 `ProtoBuf` 编译器将认为这是一份 `proto2` 文件。
+使用`proto3`编写一份`.proto`文件时，必须在文件的第一个非空且非注释行声明此文件使用`proto3`语法，否则`ProtoBuf`编译器将认为这是一份`proto2`文件。
 
 ## `Message`
 
-每个 `Message` 类型由多个字段 `field` 构成。每个 `field` 由可选的 `Rule` 和必选的 `Type` 、 `Name` 和 `tag` 组成。
+每个`Message`类型由多个字段`field`构成。每个`field`由可选的`Rule`和必选的`Type`、`Name`和`tag`组成。

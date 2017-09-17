@@ -1,14 +1,14 @@
-# Java
+# `Java`
 
 ## 标识符
 
-标识符是在Java中元素的名称的代码。在Java中的标识符有如下规定：
+标识符是在`Java`中元素的名称的代码。在`Java`中的标识符有如下规定：
 1. 标识符大小写敏感。
 2. 标识符可以由字母和数字构成，字母可以来自任何Unicode字符。
-3. 标识符只能以字母、下划线(`_`)或者美元符号(`$`)为开头。
-4. 标识符不能等于保留关键字，空文字(null)或布尔文字(true, false)。
+3. 标识符只能以字母、下划线`_`或者美元符号`$`为开头。
+4. 标识符不能等于保留关键字，空值`null`或布尔值`true`和`false`。
 
-## Java关键字
+## `Java`关键字
 
 |关键字|描述|
 |---|---|
@@ -41,7 +41,7 @@
 |int|32位整型数|
 |interface|接口，一种抽象的类型，仅有方法和常量的定义|
 |long|64位整型数|
-|native|表示方法用非java代码实现|
+|native|表示方法用非`Java`代码实现|
 |new|分配新的类实例|
 |package|一系列相关类组成一个包|
 |private|表示私有字段，或者方法等，只能从类内部访问|
@@ -88,13 +88,13 @@
 
 ### 逻辑控制
 
-if语句
+`if`语句
 ``` Java
 if (expression) {
     code;
 }
 ```
-if-else语句
+`if-else`语句
 ``` Java
 if (expression) {
     code;
@@ -104,7 +104,7 @@ else {
 }
 ```
 
-switch语句
+`switch`语句
 ``` Java
 switch (expression) {
     case value:
@@ -120,20 +120,20 @@ switch (expression) {
 
 ### 循环控制
 
-while语句
+`while`语句
 ``` Java
 while (expression) {
     code;
 }
 ```
-do-while语句
+`do-while`语句
 ``` Java
 do {
     code;
 }while (expression);
 ```
 
-for语句
+`for`语句
 ``` Java
 for (begin expression; end expression; expression) {
     code;
