@@ -1,6 +1,6 @@
-# ProtoBuf
+# `ProtoBuf`
 
-ProtoBuf是一种语言无关，平台无关的可扩展的序列化工具。
+`ProtoBuf`是一种语言无关，平台无关的可扩展的序列化工具。
 
 ## A simple example
 
