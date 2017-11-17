@@ -15,66 +15,6 @@
 2. 标识符不能与关键字或函数名相同。
 3. 标识符大小写敏感。
 
-## Data
-
-`Object`是`Python`中对于`Data`的抽象，所有的`Data`在`Python`中都是由`Object`或者`Objects`之间的关系来表示。
-在`Python`中，使用`=`来给一个变量赋值。
-
-### Objects
-
-每一个`Object`都有一个标识符，一个类型和一个值。
-
-|function||
-|---|---|
-|id|返回一个代表其标识符的值|
-
-|operator||
-|---|---|
-|is|比较两个`Object`是否相等|
-
-### Numbers
-
-#### Booleans (bool)
-
-#### Integers (int)
-
-* `0b`或`0B`表示二进制
-* `0o`或`0O`表示八进制
-* `0x`或`0X`表示十六进制
-
-在`Python3`中，`int`可以存储任意大小的整数，无需担心溢出问题。
-
-#### Real (float)
-
-### Sequences
-
-#### Strings
-
-`Python`的字符串是不可变的，不能对原字符串进行修改。
-
-字符串的表示方法：
-1. 使用单引号标识。如：`'string'`
-2. 使用双引号标识。如：`"string"`
-3. 使用三个引号标识多行字符串：如：`'''string'''`或者`"""string"""`
-
-字符串的方法
-|function|功能|
-|---|---|
-|title|以标题的格式显示每个单词，即首字母大写显示每个单词|
-|upper|全部大写显示每个字母|
-|lower|全部小写显示每个字母|
-|lstrip|删除字符串左端空白|
-|rstrip|删除字符串右端空白|
-|strip|删除字符串两端空白|
-|replace|使用指定字符替换字符串中指定字符|
-|format|字符串格式化|
-
-operator
-|operator|功能|
-|---|---|
-|+|连接两个字符串|
-|[ ]|字符串索引|
-
 ## operator
 
 |operator|作用|
@@ -101,6 +41,69 @@ operator
 |not|非|
 |and|与|
 |or|或|
+
+## Data
+
+`Object`是`Python`中对于`Data`的抽象，所有的`Data`在`Python`中都是由`Object`或者`Objects`之间的关系来表示。
+在`Python`中，使用`=`来给一个变量赋值。
+
+### Objects
+
+每一个`Object`都有一个标识符，一个类型和一个值。
+
+|function and operator||
+|---|---|
+|`id()`|返回一个代表其标识符的值|
+|`is`|比较两个`Object`是否相等|
+
+### Numbers
+
+#### Booleans (bool)
+
+#### Integers (int)
+
+字面常量：
+* `0b`或`0B`表示二进制
+* `0o`或`0O`表示八进制
+* `0x`或`0X`表示十六进制
+
+在`Python3`中，`int`可以存储任意大小的整数，无需担心溢出问题。
+
+#### Real (float)
+
+### Sequences
+
+#### Strings
+
+`Python`的字符串是不可变的，不能对原字符串进行修改。
+
+字符串的表示方法：
+1. 使用单引号标识。如：`'string'`
+2. 使用双引号标识。如：`"string"`
+3. 使用三个引号标识多行字符串：如：`'''string'''`或者`"""string"""`
+
+|function and operator|功能|
+|---|---|
+|`title()`|以标题的格式显示每个单词，即首字母大写显示每个单词|
+|`upper()`|全部大写显示每个字母|
+|`lower()`|全部小写显示每个字母|
+|`swapcase()`|所有字母大小写转换|
+|`lstrip()`|删除字符串左端空白|
+|`rstrip()`|删除字符串右端空白|
+|`strip()`|删除字符串两端空白|
+|`len()`|获取字符串长度|
+|`replace()`|使用指定字符替换字符串中指定字符|
+|`format()`|字符串格式化|
+|`split()`|基于分隔符将字符串分割成若干子串组成的列表|
+|`join()`|将包含若干子串组成的列表中的字串合成一个完整的字符串|
+|`startswith()`||
+|`endswith()`||
+|`find()`||
+|`rfind()`||
+|`count()`||
+|`+`|连接两个字符串|
+|`*`|字符串复制|
+|`[]`|字符串索引|
 
 ## 列表
 
