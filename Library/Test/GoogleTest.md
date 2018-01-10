@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
 
 ### Assertion
 
-__GTest__有两个版本的断言宏，`ASSERT_*`和`EXPECT_*`。`ASSERT_*`类断言宏失败时会终止当前被测程序，而`EXPECT_*`类断言宏则不会。`ASSERT_*`类断言宏只能在返回值为`void`的函数中使用。
+__GTest__ 有两个版本的断言宏，`ASSERT_*`和`EXPECT_*`。`ASSERT_*`类断言宏失败时会终止当前被测程序，而`EXPECT_*`类断言宏则不会。`ASSERT_*`类断言宏只能在返回值为`void`的函数中使用。
 
 自定义的失败消息可以使用`<<`运算符传递给断言宏。断言失败时，将打印参数和自定义的消息。如果参数支持`<<`运算符，将会调用它来打印参数。
 
@@ -85,10 +85,12 @@ __GTest__有两个版本的断言宏，`ASSERT_*`和`EXPECT_*`。`ASSERT_*`类�
 | `ASSERT_FLOAT_EQ(val1, val2);` | `EXPECT_FLOAT_EQ(val1, val2);` | the two float values are almost equal |
 | `ASSERT_DOUBLE_EQ(val1, val2);` | `EXPECT_DOUBLE_EQ(val1, val2);` | the two double values are almost equal |
 | `ASSERT_NEAR(val1, val2, abs_error);` | `EXPECT_NEAR(val1, val2, abs_error);` | the difference between `val1` and `val2` doesn't exceed the given absolute error |
+| `ASSERT_NO_FATAL_FAILURE(statement);` | `EXPECT_NO_FATAL_FAILURE(statement);` | `statement` doesn't generate any new fatal failures in the current thread. |
 
 ### Death Test
 
-__Death Test__是检查被测单元是否按预期的方式终止的测试。
+__Death Test__ 是检查被测单元是否按预期的方式终止的测试。
+
 | Fatal assertion | Nonfatal assertion | Verifies |
 |---|---|---|
 | `ASSERT_DEATH(statement, regex);` | `EXPECT_DEATH(statement, regex);` | `statement` crashes with the given error |
