@@ -4,44 +4,74 @@
 
 ``` C++
 TEST(test_case_name, test_name) {
-  //  test body
+	//  test body
 }
 ```
 
+在Google Test执行时，首先将按照注册顺序，依次调用`Environment::SetUp()`函数。随后，Google Test将执行全部测试，
+
 ``` C++
+class Environment : public ::testing::Environment {
+public:
+	virtual ~Environment() {}
+	// Override this to define how to set up the environment.
+	virtual void SetUp() {}
+	// Override this to define how to tear down the environment.
+	virtual void TearDown() {}
+};
+
 class FixtureTest : public ::testing::Test {
+	//  You can remove any or all of the following functions if its body is empty.
 protected:
-  //  You can remove any or all of the following functions if its body is empty.
+	// Per-test-case set-up.
+	// Called before the first test in this test case.
+	// Can be omitted if not needed.
+	static void SetUpTestCase() {
+		shared_resource_ = new ...;
+	}
 
-  FixtureTest() {
- //  You can do set-up work for each test here.
-  }
+	// Per-test-case tear-down.
+	// Called after the last test in this test case.
+	// Can be omitted if not needed.
+	static void TearDownTestCase() {
+		delete shared_resource_;
+		shared_resource_ = NULL;
+	}
 
-  virtual ~FixtureTest() {
- //  You can do clean-up work that doesn't throw exceptions here.
-  }
+	// Some expensive resource shared by all tests.
+	static T* shared_resource_;
+	
+protected:
+	FixtureTest() {
+		//  You can do set-up work for each test here.
+	}
 
-  //  If the constructor and destructor are not enough for setting up
-  //  and cleaning up each test, you can define the following methods:
+	virtual ~FixtureTest() {
+		//  You can do clean-up work that doesn't throw exceptions here.
+	}
 
-  virtual void SetUp() {
- //  Code here will be called immediately after the constructor (right before each test).
-  }
+	//  If the constructor and destructor are not enough for setting up
+	//  and cleaning up each test, you can define the following methods:
 
-  virtual void TearDown() {
- //  Code here will be called immediately after each test (right before the destructor).
-  }
+	virtual void SetUp() {
+		//  Code here will be called immediately after the constructor (right before each test).
+	}
 
-  // Objects declared here can be used by all tests in the test case for Foo.
+	virtual void TearDown() {
+		//  Code here will be called immediately after each test (right before the destructor).
+	}
+
+	// Objects declared here can be used by all tests in the test case for Foo.
 };
 
 TEST_F(FixtureTest, test_name) {
-  //  test body
+	//  test body
 }
 
 int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+	::testing::InitGoogleTest(&argc, argv);
+	::testing::AddGlobalTestEnvironment(Environment);
+	return RUN_ALL_TESTS();
 }
 ```
 
@@ -96,5 +126,11 @@ __Death Test__ 是检查被测单元是否按预期的方式终止的测试。
 | `ASSERT_DEATH(statement, regex);` | `EXPECT_DEATH(statement, regex);` | `statement` crashes with the given error |
 | `ASSERT_DEATH_IF_SUPPORTED(statement, regex);` | `EXPECT_DEATH_IF_SUPPORTED(statement, regex);` | if death tests are supported, verifies that `statement` crashes with the given error; otherwise verifies nothing |
 | `ASSERT_EXIT(statement, predicate, regex);` | `EXPECT_EXIT(statement, predicate, regex);` | `statement` exits with the given error and its exit code matches `predicate` |
+
+### Logging Additional Information
+
+``` C++
+RecordProperty("key", value);
+```
 
 ## Google Mock
