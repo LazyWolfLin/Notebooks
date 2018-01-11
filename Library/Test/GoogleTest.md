@@ -20,7 +20,7 @@ public:
 	virtual void TearDown() {}
 };
 
-class FixtureTest : public ::testing::Test {
+class Fixture : public ::testing::Test {
 	//  You can remove any or all of the following functions if its body is empty.
 protected:
 	// Per-test-case set-up.
@@ -42,11 +42,11 @@ protected:
 	static T* shared_resource_;
 	
 protected:
-	FixtureTest() {
+	Fixture() {
 		//  You can do set-up work for each test here.
 	}
 
-	virtual ~FixtureTest() {
+	virtual ~Fixture() {
 		//  You can do clean-up work that doesn't throw exceptions here.
 	}
 
@@ -64,7 +64,7 @@ protected:
 	// Objects declared here can be used by all tests in the test case for Foo.
 };
 
-TEST_F(FixtureTest, test_name) {
+TEST_F(Fixture, Test) {
 	//  test body
 }
 
@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
 
 ### Assertion
 
-__GTest__ 有两个版本的断言宏，`ASSERT_*`和`EXPECT_*`。`ASSERT_*`类断言宏失败时会终止当前被测程序，而`EXPECT_*`类断言宏则不会。`ASSERT_*`类断言宏只能在返回值为`void`的函数中使用。
+__Google Test__ 有两个版本的断言宏，`ASSERT_*`和`EXPECT_*`。`ASSERT_*`类断言宏失败时会终止当前被测程序，而`EXPECT_*`类断言宏则不会。`ASSERT_*`类断言宏只能在返回值为`void`的函数中使用。
 
 自定义的失败消息可以使用`<<`运算符传递给断言宏。断言失败时，将打印参数和自定义的消息。如果参数支持`<<`运算符，将会调用它来打印参数。
 
@@ -117,6 +117,18 @@ __GTest__ 有两个版本的断言宏，`ASSERT_*`和`EXPECT_*`。`ASSERT_*`类�
 | `ASSERT_NEAR(val1, val2, abs_error);` | `EXPECT_NEAR(val1, val2, abs_error);` | the difference between `val1` and `val2` doesn't exceed the given absolute error |
 | `ASSERT_NO_FATAL_FAILURE(statement);` | `EXPECT_NO_FATAL_FAILURE(statement);` | `statement` doesn't generate any new fatal failures in the current thread. |
 
+### Test Fixture
+
+__Test Fixture__ 可以让多个测试使用相同的配置而无须多次编写初始化函数。对于每个测试， __Test Fixture__ 都会实例化一个新的实例。
+
+使用 __Test Fixture__ 首先从`::testing::Test`中派生一个类。在类的构造函数或者`SetUp()`函数中编写初始化代码，在析构函数或者`TearDown()`函数中编写释放代码。注意，优先使用构造函数和析构函数编写代码，除非析构时可能抛出异常，使用`--gtest_throw_on_failure`参数进行测试或者调用虚函数。最后，使用`TEST_F`宏编写测试。
+
+### Logging Additional Information
+
+``` C++
+RecordProperty("key", value);
+```
+
 ### Death Test
 
 __Death Test__ 是检查被测单元是否按预期的方式终止的测试。
@@ -127,10 +139,14 @@ __Death Test__ 是检查被测单元是否按预期的方式终止的测试。
 | `ASSERT_DEATH_IF_SUPPORTED(statement, regex);` | `EXPECT_DEATH_IF_SUPPORTED(statement, regex);` | if death tests are supported, verifies that `statement` crashes with the given error; otherwise verifies nothing |
 | `ASSERT_EXIT(statement, predicate, regex);` | `EXPECT_EXIT(statement, predicate, regex);` | `statement` exits with the given error and its exit code matches `predicate` |
 
-### Logging Additional Information
+### Parameterize Test
 
-``` C++
-RecordProperty("key", value);
-```
+#### Value Parameterized Tests
+
+__Value Parameterized Tests__ 允许测试代码使用多套不同的输入参数进行测试而无须重复编写测试代码。编写 __Value Parameterized Tests__ 测试首先需要定义一个从`::testing::Test`和`::testing::WithParamInterface<T>`继承的`fixture`类。然后，使用`TEST_P`宏定义测试，并在测试中调用`GetParam()`函数获取输入参数进行测试。最后，使用`INSTANTIATE_TEST_CASE_P(InstantiationName, TestName, ValueSet);`实例化多个测试。
+
+#### Type Parameterized Tests
+
+__Type Parameterized Tests__ 可以对不同类型的参数进行相同的逻辑测试而无须重复编写测试代码。编写 __Type Parameterized Tests__ 测试首先需要定义一个带参数模板并从`::testing::Test`继承的`fixture`模板类。然后使用`TYPED_TEST_CASE(FixtureName, TypeSet);`添加类型列表。最后使用`TYPED_TEST()`宏编写测试。
 
 ## Google Mock
