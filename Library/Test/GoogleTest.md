@@ -1,5 +1,9 @@
 ## Google Test
 
+### Note
+
+* __test case name__ 和 __test name__不应包含下划线`_`。
+
 ### Simple Test
 
 ``` C++
