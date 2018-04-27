@@ -89,8 +89,8 @@ __Google Test__ 有两个版本的断言宏，`ASSERT_*`和`EXPECT_*`。`ASSERT_
 |---|---|---|
 | `SUCCEED();` |  | generate a success |
 | `FAIL();` |  | generate a fatal failure |
-| `ADD_FAILUER();` |  | generate a nonfatal failure |
-| `ADD_FAILUER_AT("file_path", line_number);` |  | generate a nonfatal failure |
+|  | `ADD_FAILUER();` | generate a nonfatal failure |
+|  | `ADD_FAILUER_AT("file_path", line_number);` | generate a nonfatal failure |
 | `ASSERT_TRUE(condition);` | `EXPECT_TRUE(condition);` | `condition` is true |
 | `ASSERT_FALSE(condition);`| `EXPECT_FALSE(condition);` | `condition` is false |
 | `ASSERT_EQ(val1, val2);`|`EXPECT_EQ(val1, val2);`| `val1 == val2` is true |
