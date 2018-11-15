@@ -46,7 +46,7 @@ gem install jekyll bundler
 
 ### Front Matter
 
-每一个包含Front Matter的文件都将被`Jekyll`作为特殊文件处理。Front Matter必须位于文件开头，并由`YAML`语法组成，用于设置预定义变量及自定义变量，而变量的默认值可以在`_config.yml`文件设置。
+Front Matter是位于文件开头，用于设置`page`属性的`YAML`片段。而属性的默认值可以在`_config.yml`文件设置。每一个包含Front Matter的文件都将被`Jekyll`作为特殊文件处理。
 
 ### posts
 
@@ -62,9 +62,18 @@ gem install jekyll bundler
 
 除了撰写博客文章，`Jekyll`还可以创建一些特殊的页面，如Homepage(index.html)，about.html等。
 
-### data
+### Data
 
-`Jekyll`可以从`_data`文件夹中读取`YAML`、`JSON`或`CSV`格式的文件，并作为`site.data`中的数据。
+`Jekyll`将从`_data`文件夹下读取`YAML`、`JSON`或`CSV`格式的文件，并储存到`site.data`中。
+
+### Layout
+
+Layout是位于`_layouts`文件夹下的页面模板文件。
+
+
+### `Include`
+
+`Include`是`Jekyll`内置的`Liquid`[标签](#tags)，用于在页面中包含位于`_includes`下的另一文件。
 
 # APPENDIX
 
@@ -72,18 +81,18 @@ gem install jekyll bundler
 
 `Liquid`是一种模板语言，主要由对象(`objects`)，标签(`tags`)及过滤器(`filters`)三大部分组成。
 
-### `objects`
+### objects
 
-`objects`是`Liquid`填充内容的位置。`Liquid`用两个花括号`{{ objects }}`表示`objects`。例如：
+objects是`Liquid`填充内容的位置。`Liquid`用两个花括号`{{ object }}`表示objects。例如：
 
 ``` Liquid
 {{ page.title }}
 ```
 表示将变量`page.title`的值填充到页面上。
 
-### `tags`
+### tags
 
-`tags`是`Liquid`对模板的逻辑控制流。`Liquid`用花括号和百分号`{% tags %}`表示`tags`。例如：
+tags是`Liquid`对模板的逻辑控制流。`Liquid`用花括号和百分号`{% tag %}`表示tags。例如：
 
 ``` Liquid
 {% if page.show_sidebar %}
@@ -94,9 +103,9 @@ gem install jekyll bundler
 ```
 表示如果变量`page.show_sidebar`为`true`时则显示边栏。
 
-### `filters`
+### filters
 
-`filters`是`Liquid`对`objects`修饰。`Liquid`用一条竖线`|`表示调用竖线后方的`filters`对竖线前方的`objects`。例如：
+filters是`Liquid`对objects修饰。`Liquid`用一条竖线`|`表示调用竖线后方的filters对竖线前方的objects。例如：
 
 ``` Liquid
 {{ "hi" | capitalize }}
