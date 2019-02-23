@@ -12,7 +12,7 @@
 
 首先安装`Ruby`：
 ``` Shell
-sudo apt-get install ruby ruby-dev
+sudo apt-get install ruby ruby-dev build-essential
 ```
 
 然后将`Gem`的安装路径配置到环境变量中：
@@ -23,9 +23,10 @@ echo 'export PATH=$HOME/gems/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-最后安装`Jekyll`和`bundler`
+最后更新`Gem`并安装`Jekyll`和`bundler`
 ``` Shell
-gem install jekyll bundler
+sudo gem update
+sudo gem install jekyll bundler
 ```
 
 ## Command
@@ -48,7 +49,7 @@ gem install jekyll bundler
 
 Front Matter是位于文件开头，用于设置`page`属性的`YAML`片段。而属性的默认值可以在`_config.yml`文件设置。每一个包含Front Matter的文件都将被`Jekyll`作为特殊文件处理。
 
-### posts
+### Posts
 
 `Jekyll`的每一篇博客文章都存放在`_posts`文件夹下，创建一篇新博客文章仅需在`_posts`文件夹下创建一个符合命名要求且包含Front Matter的新文件。`Jekyll`对于博客文章的命名要求是：`YYYY-MM-DD-title.MARKUP`。
 
