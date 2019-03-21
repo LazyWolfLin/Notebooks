@@ -1,5 +1,7 @@
 # Git
 
+Book：[Pro Git](https://git-scm.com/book/zh/v2)
+
 ## Git Command
 
 ### git init
@@ -32,7 +34,43 @@ git status
 git add <pathspec>
 ```
 
-把文件添加到 `index` 中。`index` 保存工作空间内容的快照，并将作为下一次提交的内容。
+把文件添加到 `index` 中。`index` 暂存了工作空间内容的快照，并将作为下一次提交的内容。
+
+### git diff
+
+```
+git diff
+```
+
+显示代码库不同快照之间的之间的差异。默认比较工作目录中当前文件和已暂存区域快站之间的差异。
+
+### git commit
+
+```
+git commit
+```
+
+记录代码库的更改。默认记录已暂存的更改。
+
+`-m <msg>` 使用给定的 `<msg>` 作为提交信息。
+
+`-a` 自动将所有跟踪过的文件暂存起来作为 `commit` 记录的更改。
+
+### git rm
+
+```
+git rm <file>
+```
+
+从工作目录和 `index` 中删去文件。
+
+### git log
+
+```
+git log
+```
+
+显示提交记录日志。
 
 ## gitignore
 
