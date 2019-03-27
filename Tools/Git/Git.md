@@ -6,49 +6,25 @@ Book：[Pro Git](https://git-scm.com/book/zh/v2)
 
 ### git init
 
-```
-git init
-```
-
 创建一个新的 Git 仓库或者重新初始化现有的 Git 仓库。
 
 ### git clone
-
-```
-git clone <repo url>
-```
 
 将已有的 Git 仓库克隆到一个新目录中。Git 支持多种数据传输协议，包括 ssh、git、http 以及 https。
 
 ### git status
 
-```
-git status
-```
-
 显示工作目录下文件状态。
 
 ### git add
-
-```
-git add <pathspec>
-```
 
 把文件添加到 `index` 中。`index` 暂存了工作空间内容的快照，并将作为下一次提交的内容。
 
 ### git diff
 
-```
-git diff
-```
-
 显示代码库不同快照之间的之间的差异。默认比较工作目录中当前文件和已暂存区域快站之间的差异。
 
 ### git commit
-
-```
-git commit
-```
 
 记录代码库的更改。默认记录已暂存的更改。
 
@@ -56,19 +32,25 @@ git commit
 
 `-a` 自动将所有跟踪过的文件暂存起来作为 `commit` 记录的更改。
 
-### git rm
+`--amend` 将 `index` 的内容合并到当前分支最新的 commit 中并形成一个新的 commit。
 
-```
-git rm <file>
-```
+### git rm
 
 从工作目录和 `index` 中删去文件。
 
-### git log
+### git reset
 
-```
-git log
-```
+将当前 HEAD 重置到指定状态。
+
+`HEAD <file>` 将指定文件从 `index` 中挪出。
+
+### git checkout
+
+切换分支或恢复工作目录内的文件。
+
+`-- <file>` 撤销指定文件的修改。
+
+### git log
 
 显示提交记录日志。
 
