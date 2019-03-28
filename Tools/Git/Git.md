@@ -54,6 +54,24 @@ Book：[Pro Git](https://git-scm.com/book/zh/v2)
 
 显示提交记录日志。
 
+### git fetch
+
+从另一个仓库抓取信息。
+
+### git remote
+
+管理远程仓库。
+
+`-v` 显示远程仓库的 URL。
+
+`add <shortname> <url>` 添加新的远程仓库。
+
+`show [remote-name]` 查看远程仓库的更多信息。
+
+### git push
+
+将本地仓库推送到远程仓库。
+
 ## gitignore
 
 一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。在这种情况下，我们可以创建一个名为 .gitignore 的文件，列出要忽略的文件模式。
