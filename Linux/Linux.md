@@ -8,6 +8,8 @@
 
 [Coreutils - GNU core utilities](https://www.gnu.org/software/coreutils/),  are the basic file, shell and text manipulation utilities of the GNU operating system.
 
+Version: 8.28
+
 * Output of entire files
     * [cat](./Command/cat.md): Concatenate FILE(s) to standard output.
     * tac
@@ -52,16 +54,16 @@
     * expand
     * unexpand
 * Directory listing
-    * ls
+    * [ls](./Command/ls.md): List information about the FILEs (the current directory by default).
     * dir
     * vdir
     * dircolors
 * Basic operations
-    * cp
+    * [cp](./Command/cp.md): Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
     * dd
     * install
-    * mv
-    * rm
+    * [mv](./Command/mv.md): Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.
+    * [rm](./Command/rm.md): Remove (unlink) the FILE(s).
     * shred
 * Special file types
     * mkdir
@@ -76,7 +78,7 @@
     * chgrp
     * chmod
     * chown
-    * touch
+    * [touch](./Command/touch.md): Update the access and modification times of each FILE to the current time.
 * Disk usage
     * df
     * du
@@ -84,7 +86,7 @@
     * sync
     * truncate
 * Printing text
-    * echo
+    * [echo](./Command/echo.md): Echo the STRING(s) to standard output.
     * printf
     * yes
 * Conditions

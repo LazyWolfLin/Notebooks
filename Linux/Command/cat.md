@@ -1,8 +1,8 @@
 # cat
 
-Concatenate FILE(s) to standard output.
-
 ## Introduction
+
+Concatenate FILE(s) to standard output.
 
 ## Command
 
