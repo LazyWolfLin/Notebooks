@@ -11,7 +11,7 @@
 Version: 8.28
 
 * Output of entire files
-    * [cat](./Command/cat.md): Concatenate FILE(s) to standard output.
+    * [cat](./Command/Coreutils/cat.md): Concatenate FILE(s) to standard output.
     * tac
     * nl
     * od
@@ -54,16 +54,16 @@ Version: 8.28
     * expand
     * unexpand
 * Directory listing
-    * [ls](./Command/ls.md): List information about the FILEs (the current directory by default).
+    * [ls](./Command/Coreutils/ls.md): List information about the FILEs (the current directory by default).
     * dir
     * vdir
     * dircolors
 * Basic operations
-    * [cp](./Command/cp.md): Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
+    * [cp](./Command/Coreutils/cp.md): Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
     * dd
     * install
-    * [mv](./Command/mv.md): Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.
-    * [rm](./Command/rm.md): Remove (unlink) the FILE(s).
+    * [mv](./Command/Coreutils/mv.md): Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.
+    * [rm](./Command/Coreutils/rm.md): Remove (unlink) the FILE(s).
     * shred
 * Special file types
     * mkdir
@@ -78,7 +78,7 @@ Version: 8.28
     * chgrp
     * chmod
     * chown
-    * [touch](./Command/touch.md): Update the access and modification times of each FILE to the current time.
+    * [touch](./Command/Coreutils/touch.md): Update the access and modification times of each FILE to the current time.
 * Disk usage
     * df
     * du
@@ -86,7 +86,7 @@ Version: 8.28
     * sync
     * truncate
 * Printing text
-    * [echo](./Command/echo.md): Echo the STRING(s) to standard output.
+    * [echo](./Command/Coreutils/echo.md): Echo the STRING(s) to standard output.
     * printf
     * yes
 * Conditions
@@ -103,7 +103,7 @@ Version: 8.28
     * mktemp
     * realpath
 * Working context
-    * pwd
+    * [pwd](./Command/Coreutils/pwd.md): Print the full filename of the current working directory.
     * stty
     * printenv
     * tty
@@ -140,3 +140,12 @@ Version: 8.28
     * factor
     * numfmt
     * seq
+
+### Other
+
+* [Grep](./Command/Grep.md): Search for PATTERN in each FILE.
+* [less](https://www.gnu.org/software/less/): GNU less is a program similar to more, but which allows backward movement in the file as well as forward movement. 
+
+## Shell
+
+[Bash](./Bash.md)
