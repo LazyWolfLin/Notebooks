@@ -80,7 +80,7 @@ Version: 8.28
     * chown
     * [touch](./Command/Coreutils/touch.md): Update the access and modification times of each FILE to the current time.
 * Disk usage
-    * df
+    * [df](./Command/Coreutils/df.md): Show information about the file system on which each FILE resides, or all file systems by default.
     * du
     * stat
     * sync
@@ -115,7 +115,7 @@ Version: 8.28
     * users
     * who
 * System context
-    * date
+    * [date](./Command/Coreutils/date.md): Display the current time in the given FORMAT, or set the system date.
     * arch
     * nproc
     * uname
