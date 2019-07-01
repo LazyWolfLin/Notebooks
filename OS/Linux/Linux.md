@@ -1,5 +1,10 @@
 # Linux
 
+Resource:
+[Single UNIX® Specification, Version 4, 2008 Edition](http://pubs.opengroup.org/onlinepubs/9699919799.2008edition/)
+[Linux Standard Base](http://refspecs.linuxfoundation.org/lsb.shtml)
+[Filesystem Hierarchy Standard](http://refspecs.linuxfoundation.org/fhs.shtml)
+
 ## Introduction
 
 ## Command
