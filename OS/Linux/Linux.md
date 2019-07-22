@@ -337,22 +337,83 @@ Built In Utilities
 
 ### [`/`](http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03.html) -- the toot filesystem
 
-| Directory | Description |
-| --- | --- |
-| `/bin` | Essential command binaries |
-| `/boot` | Static files of the boot loader |
-| `/dev` | Device files |
-| `/etc` | Host-specific system configuration |
-| `/lib` | Essential shared libraries and kernel modules |
-| `/media` | Mount point for removable media |
-| `/mnt` | Mount point for mounting a filesystem temporarily |
-| `/opt` | Add-on application software packages |
-| `/run` | Data relevant to running processes |
-| `/sbin` | Essential system binaries |
-| `/srv` | Data for services provided by this system |
-| `/tmp` | Temporary files |
-| `/usr` | Secondary hierarchy |
-| `/var` | Variable data |
-| `home` | User home directories (optional) |
-| `lib<qual>` | Alternate format essential shared libraries (optional) |
-| `root` | Home directory for the root user (optional) |
+* [`/bin`][bin] : Essential user command binaries (for use by all users)
+* [`/boot`][boot] : Static files of the boot loader
+* [`/dev`][dev] : Device files
+* [`/etc`][etc] : Host-specific system configuration
+* [`/home`][home] : User home directories (optional)
+* [`/lib`][lib] : Essential shared libraries and kernel modules
+* [`/lib<qual>`][lib_qual] : Alternate format essential shared libraries (optional)
+* [`/media`][media] : Mount point for removable media
+* [`/mnt`][mnt] : Mount point for a temporarily mounted filesystem
+* [`/opt`][opt] : Add-on application software packages
+* [`/root`][root] : Home directory for the root user (optional)
+* [`/run`][run] : Run-time variable data
+* [`/sbin`][sbin] : System binaries
+* [`/srv`][srv] : Data for services provided by this system
+* [`/tmp`][tmp] : Temporary files
+* [`/usr`][usr] : Secondary hierarchy
+  * [`/usr/bin`][usr_bin] : Most user commands
+  * [`/usr/include`][usr_include] : Directory for standard include files.
+  * [`/usr/lib`][usr_lib] : Libraries for programming and packages
+  * [`/usr/libexec`][usr_libexec] : Binaries run by other programs (optional)
+  * [`/usr/lib<qual>`][usr_lib_qual] : Alternate format libraries (optional)
+  * [`/usr/local`][usr_local] : Local hierarchy
+  * [`/usr/sbin`][usr_sbin] : Non-essential standard system binaries
+  * [`/usr/share`][usr_share] : Architecture-independent data
+  * [`/usr/src`][usr_src] : Source code (optional)
+* [`/var`][var] : Variable data
+  * [`/var/account`][var_account] : Process accounting logs (optional)
+  * [`/var/cache`][var_cache] : Application cache data
+  * [`/var/crash`][var_crash] : System crash dumps (optional)
+  * [`/var/games`][var_games] : Variable game data (optional)
+  * [`/var/lib`][var_lib] : Variable state information
+  * `/var/local` : Variable data for /usr/local
+  * [`/var/lock`][var_lock] : Lock files
+  * [`/var/log`][var_log] : Log files and directories
+  * [`/var/mail`][var_mail] : User mailbox files (optional)
+  * [`/var/opt`][var_opt] : Variable data for /opt
+  * [`/var/run`][var_run] : Run-time variable data
+  * [`/var/spool`][var_spool] : Application spool data
+  * [`/var/tmp`][var_tmp] : Temporary files preserved between system reboots
+  * [`/var/yp`][var_yp] : Network Information Service (NIS) database files (optional)
+
+[bin]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s04.html
+[boot]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s05.html
+[dev]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s06.html
+[etc]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s07.html
+[home]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s08.html
+[lib]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s09.html
+[lib_qual]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s10.html
+[media]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s11.html
+[mnt]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s12.html
+[opt]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s13.html
+[root]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s14.html
+[run]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s15.html
+[sbin]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s16.html
+[srv]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s17.html
+[tmp]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s18.html
+[usr]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04.html
+[usr_bin]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s04.html
+[usr_include]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s05.html
+[usr_lib]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s06.html
+[usr_libexec]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s07.html
+[usr_lib_qual]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s08.html
+[usr_local]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s09.html
+[usr_sbin]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s10.html
+[usr_share]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s11.html
+[usr_src]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s12.html
+[var]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05.html
+[var_account]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s04.html
+[var_cache]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s05.html
+[var_crash]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s06.html
+[var_games]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s07.html
+[var_lib]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s08.html
+[var_lock]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s09.html
+[var_log]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s10.html
+[var_mail]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s11.html
+[var_opt]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s12.html
+[var_run]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s13.html
+[var_spool]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s14.html
+[var_tmp]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s15.html
+[var_yp]: http://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05s16.html
