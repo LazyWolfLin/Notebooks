@@ -25,6 +25,30 @@ Paul Butcher. Seven Concurrency Models in Seven Weeks
 
 ## Threads and Mutex
 
+线程与锁模型是对底层硬件执行过程的形式化。
+
+竞态条件：代码行为取决于运算的时序。
+
+### Memory Model
+
+https://en.cppreference.com/w/cpp/language/memory_model
+
+### Mutual exclusion
+
+互斥锁
+
+### 死锁
+
+哲学家问题
+
+解决方法：按照一个全局固定的顺序获取多把锁。
+
+### Condition variables
+
+### Atomic value
+
+### Thread pool
+
 ## Functional Programming
 
 ## The Clojure Way—Separating Identity from State
