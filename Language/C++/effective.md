@@ -2,6 +2,8 @@
 
 ## Accustoming Yourself to C++
 
+### View C++ as a federation of languages
+
 C++ 是一种多范式编程语言（multiparadigm programming language），它支持过程（procedural）、面向对象（object-oriented）、函数（functional）、泛型（generic）和元编程（metaprogramming）。多编程范式分别组成了 C++ 不同的部分：
 
 * C
@@ -11,9 +13,9 @@ C++ 是一种多范式编程语言（multiparadigm programming language），它
 
 C++ 编程守则视情况而变，取决于你使用哪一部分的 C++。
 
-### View C++ as a federation of languages
-
 ### Perfer consts, enums, and inlines to #defines
+
+使用宏意味着你与编译器看到的不是同样的代码，编译器在处理代码前宏就已经被预处理器移除了。同时，因为宏不在编译器生成的符号表中，那么当编译失败时，你在错误信息中也看不到宏。而且，宏是全局的，也就意味着某个犄角旮旯里可能藏着一个你不知道的宏。虽然 `C++` 中不可避免的需要使用某些宏，但优先使用 `const` 常量、`enum` 枚举常量和 `inline` 内联函数而非 `#define` 宏有助于避免上述情况。
 
 ### Use const whenever possible
 
