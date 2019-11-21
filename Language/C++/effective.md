@@ -19,4 +19,16 @@ C++ 编程守则视情况而变，取决于你使用哪一部分的 C++。
 
 ### Use const whenever possible
 
+`const` 意味着一种语义上的约束，虽然编译器很难区别真正的常量与只读别名并据此作出优化，但却能在编译期强制实施 `const` 约束。所以，尽量使用 `const`，让编译器在语义上检查你的代码。
+
+`const` 出现在 `*` 左边意味着指针指向常量或只读别名，`const` 出现在 `*` 右边意味着指针本身是常量或只读别名，`const` 出现在 `*` 两边则指针本身及被指物两者都是常量或只读别名。
+
+#### `const` 成员函数
+
+关于 `const` 成员函数的语义有两个主流概念：
+* "bitwise const": `const` 成员函数不能改变对象的任何成员变量。
+* "logical const": `const` 成员函数可以进行一些对象外部无法发现的修改。
+
+当 `const` 成员函数与 non-`const` 成员函数有等价实现时，让 non-`const` 成员函数调用 `const` 成员函数以避免重复实现。
+
 ### Make sure that objects are initialized before they're used
