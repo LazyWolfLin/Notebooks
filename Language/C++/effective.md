@@ -32,3 +32,28 @@ C++ 编程守则视情况而变，取决于你使用哪一部分的 C++。
 当 `const` 成员函数与 non-`const` 成员函数有等价实现时，让 non-`const` 成员函数调用 `const` 成员函数以避免重复实现。
 
 ### Make sure that objects are initialized before they're used
+
+对于内置对象，在使用之前手工初始化它，因为 C++ 并保证进行初始化。而其他对象则由构造函数负责初始化，构造函数需要保证对象的每一个成员的初始化工作。
+
+在构造函数中使用成员初值列表（member initialization list）初始化成员优于在构造函数中使用赋值操作。
+
+C++ 有固定的成员初始化序列：基类初始化早于派生类，成员变量则总是以声明次序进行初始化。
+
+C++ 不保证跨编译单元对象（non-local static object）的初始化次序，但保证 local static object 在被调用前初始化。使用 reference-returning 函数可以将 non-local static object 转化为 local static object，函数的首次调用时会初始化该对象。
+
+## Constructors, Destructors, and Assignment Operators
+### Know what functions C++ silently writes and calls
+### Explicitly disallow the use of compiler-generated functions you do not want
+### Declare destructors virtual in polymorohic base classes
+### Prevent exceptions from leaving destructors
+### Never call virtual functions during construction or destruction
+### Have assignment operators return a reference to *this
+### Handle assignment to self in operator=
+### Copy all parts of an object
+## Resource Management
+## Designs and Declarations
+## Implementations
+## Inheritance and Object-Oriented Design
+## Templates and Generic Programming
+## Customizing new and delete
+## Miscellany
