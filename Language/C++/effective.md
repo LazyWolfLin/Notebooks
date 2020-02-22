@@ -42,8 +42,15 @@ C++ 有固定的成员初始化序列：基类初始化早于派生类，成员�
 C++ 不保证跨编译单元对象（non-local static object）的初始化次序，但保证 local static object 在被调用前初始化。使用 reference-returning 函数可以将 non-local static object 转化为 local static object，函数的首次调用时会初始化该对象。
 
 ## Constructors, Destructors, and Assignment Operators
+
 ### Know what functions C++ silently writes and calls
+
+C++ 可以暗自创建：默认构造函数、复制构造函数、移动构造函数、复制赋值运算符、移动赋值运算符、默认析构函数。
+
 ### Explicitly disallow the use of compiler-generated functions you do not want
+
+如果要阻止 C++ 自动创建成员函数，则应在成员函数定义中使用 `delete` 关键字显式弃置它。
+
 ### Declare destructors virtual in polymorohic base classes
 ### Prevent exceptions from leaving destructors
 ### Never call virtual functions during construction or destruction
