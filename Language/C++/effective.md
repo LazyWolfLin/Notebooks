@@ -52,7 +52,17 @@ C++ 可以暗自创建：默认构造函数、复制构造函数、移动构造�
 如果要阻止 C++ 自动创建成员函数，则应在成员函数定义中使用 `delete` 关键字显式弃置它。
 
 ### Declare destructors virtual in polymorohic base classes
+
+任何拥有 virtual 成员函数的基类都需要一个 virtual 析构函数，否则 delete 一个指向派生类的基类指针将产生内存泄漏。
+
+一般而言，每一个带有 virtual 成员函数的类都有一个 vptr(virtual table pointer) 指向一个函数指针数组 vtbl(virtual table)，用于运行时获得正确的函数指针。
+
 ### Prevent exceptions from leaving destructors
+
+如果在析构函数中抛出异常，那么程序将可能提前结束或出现不明确行为。所以，析构函数绝对不能抛出异常，如果析构函数中被调函数抛出异常，那析构函数就应该捕捉并处理。
+
+如果用户需要对某一操作可能抛出的异常做处理，那么就应当提供一个普通函数执行该操作。
+
 ### Never call virtual functions during construction or destruction
 ### Have assignment operators return a reference to *this
 ### Handle assignment to self in operator=
