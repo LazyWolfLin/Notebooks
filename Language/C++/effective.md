@@ -64,13 +64,138 @@ C++ 可以暗自创建：默认构造函数、复制构造函数、移动构造�
 如果用户需要对某一操作可能抛出的异常做处理，那么就应当提供一个普通函数执行该操作。
 
 ### Never call virtual functions during construction or destruction
+
+不要在构造和析构函数中调用虚函数，因为无法调用到派生类版本的虚函数。
+
 ### Have assignment operators return a reference to *this
+
+赋值运算符需要返回一个指向 `*this` 的引用，这是一个惯例。
+
 ### Handle assignment to self in operator=
+
+赋值运算符应当保证自我赋值操作的安全性，可用方法包括“证同测试”和“copy and swap”。
+
 ### Copy all parts of an object
+
+编译器不会注意到自定义的拷贝操作没有完全拷贝每个成员变量，需要用户自行保证。所以添加新成员变量或者新派生类时，需要检查拷贝操作是否对新成员变量进行拷贝或者调用了基类的拷贝操作。
+
+拷贝构造和赋值操作往往有相似的代码，但它们不能相互调用，只能将相同代码打包到第三个函数中共同调用。
+
 ## Resource Management
+
+资源就是使用后必须释放的东西。C++ 常见的资源如：动态分配的内存、文件描述器、互斥锁、图形界面中的字体和笔刷、数据库的连接和网络 sockets。
+
+### use objects to manage resources
+
+为防止资源泄漏，可以使用 RAII(Resource Acquisition Is Initialization)对象，它们在构造时获取资源并在析构时释放资源。常见的 RAII 对象有 std::unique_ptr、std::shared_ptr 和 std::weak_ptr。
+
+### Think carefully about copying behavior in resource-managing classes
+### Provide access to raw resources in resource-managing classes
+### Use the same form in corresponding uses of new and delete
+### Store newed objects in smart pointers in standalone statements
+
 ## Designs and Declarations
+
+### Make interfaces easy to use correctly and hard to use incorrectly
+### Treat class design as type design
+### Prefer pass-by-reference-to-const to pass-by-value
+### Don't try to return a reference when you must return an object
+### Declare data members private
+### Prefer non-member non-friend functions to member functions
+### Declare non-member functions when type conversions should apply to all parameters
+### Consider support for a non-throwing swap
+
 ## Implementations
+
+### Postpone variable definitions as long as possible
+### Minimize casting
+### Avoid returning "handles" to object internals
+### Strive for exception-safe code
+### Understand the ins and outs of inlining
+### Minimize compilation dependencies between files
+
 ## Inheritance and Object-Oriented Design
+
+### Make sure public inheritance models "is-a"
+### Avoid hiding inherited names
+### Differentiate between inheritance of interface and inheritance of implementation
+### Consider alternatives to virtual functions
+### Never redefine an inherited non-virtual function
+### Never redefine a function's inherited default parameter value
+### Model "has-a" or "is-implemented-in-terms-of" through composition
+### Use private inheritance judiciously
+### Use multiple inheritance judiciously
+
 ## Templates and Generic Programming
+
+### Understand implicit interfaces and compile-time polymorphism
+### Understand the two meanings of typename
+### Know how to access names in templatized base classes
+### Factor parameter-independent code out of templates
+### Use member function templates to accept "all compatible types"
+### Define non-member functions inside templates when type conversions are desired
+### Use traits classes for information about types
+### Be aware of template metaprogramming
+
 ## Customizing new and delete
+
+### Understand the behavior of the new-handler
+### Understand when it makes sense to replace new and delete
+### Adhere to convention when writing new and delete
+### Write placement delete if you write placement new
+
 ## Miscellany
+
+### Pay attention to compiler warnings
+### Familiarize yourself with the standard library, including TR1
+### Familiarize yourself with Boost
+
+## Basics
+
+### Distinguish between pointers and references
+### Prefer C++ style casts
+### Never treat arrays polymorphically
+### Avoid gratuitous default constructors
+
+## Operators
+
+### Be wary of user-defined conversion functions
+### Distinguish between prefix and postfix forms of increment and decrement operators
+### Never overload `&&`, `||`, or `,`
+### Understand the different meanings of new and delet
+
+## Exceptions
+
+### Use destructors to prevent resource leaks
+### Prevent resource leaks in constructors
+### Prevent exceptions from leaving destructors
+### Understand how throwing an exception differs from passing a parameter or calling a virtual function
+### Catch exceptions by reference
+### Use exception specifications judiciously
+### Understand the costs of exception handling
+
+## Efficiency
+
+### Remember the 80-20 rule
+### Consider using lazy evaluation
+### Amortize the cost of expected computations
+### Understand the origin of temporary objects
+### Facilitate the return value optimization
+### Overload to avoid implicit type conversions
+### Consider using op= instead of stand-alone op
+### Consider alternative libraries
+### Understand the costs of virtual functions, multiple inheritance,virtual base classes, and RTTI
+
+## Techniques, Idioms, Patterns
+
+### Virtualizing constructors and non-member functions
+### Limiting the number of objects of a class
+### Requiring or prohibiting heap-based objects
+### Making functions virtual with respect to more than one object
+
+## Miscellany
+
+### Program in the future tense
+### Make non-leaf classes abstract
+### Understand how to combine C++ and C in the same program
+### Familiarize yourself with the language standard
