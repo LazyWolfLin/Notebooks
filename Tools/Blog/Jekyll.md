@@ -1,6 +1,6 @@
 # `Jekyll`
 
-`Jekyll`是一款基于`Ruby`静态页面生成器，它可以把[`Markdowm`](Tools/Typeset/Markdown.md)文件和[`Liquid`](https://shopify.github.io/liquid/)模板编译为静态Web页面。
+Jekyll is a simple, blog-aware, static site generator perfect for personal, project, or organization sites. Think of it like a file-based CMS, without all the complexity. Jekyll takes your content, renders [Markdown][markdown] and [Liquid][liquid] templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server. Jekyll is the engine behind GitHub Pages, which you can use to host sites right from your GitHub repositories.
 
 ## installation
 
@@ -8,22 +8,14 @@
 
 ### Windows Subsystem for Linux
 
-启用`Windows10`上的`WSL`并安装`distributions`后即可安装`Jekyll`。
+启用 `Windows10` 上的 `WSL` 并安装 `distributions`
 
-首先安装`Ruby`：
+安装 `Ruby`：
 ``` Shell
 sudo apt-get install ruby ruby-dev build-essential
 ```
 
-然后将`Gem`的安装路径配置到环境变量中：
-``` Shell
-echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-echo 'export GEM_HOME=$HOME/gems' >> ~/.bashrc
-echo 'export PATH=$HOME/gems/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-```
-
-最后更新`Gem`并安装`Jekyll`和`bundler`
+更新 `Gem` 并安装 `Jekyll` 和 `bundler`：
 ``` Shell
 sudo gem update
 sudo gem install jekyll bundler
@@ -112,3 +104,6 @@ filters是`Liquid`对objects修饰。`Liquid`用一条竖线`|`表示调用竖�
 {{ "hi" | capitalize }}
 ```
 表示`capitalize`对`"hi"`进行修饰，将输出字符串`"Hi"`。
+
+[markdown]: Tools/Typeset/Markdown.md
+[liquid]: https://shopify.github.io/liquid/
