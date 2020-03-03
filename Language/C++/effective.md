@@ -90,9 +90,20 @@ C++ 可以暗自创建：默认构造函数、复制构造函数、移动构造�
 为防止资源泄漏，可以使用 RAII(Resource Acquisition Is Initialization)对象，它们在构造时获取资源并在析构时释放资源。常见的 RAII 对象有 std::unique_ptr、std::shared_ptr 和 std::weak_ptr。
 
 ### Think carefully about copying behavior in resource-managing classes
+
+拷贝 RAII 对象必须考虑它所管理的资源的拷贝，常见的情况有：禁止拷贝 RAII 对象、禁止拷贝资源而对引用资源的 RAII 对象计数、禁止拷贝资源且转移资源的拥有权、拷贝 RAII 对象并拷贝资源。
+
 ### Provide access to raw resources in resource-managing classes
+
+每个 RAII 类都会提供直接访问资源的方法，以满足某些 API 的需求。
+
 ### Use the same form in corresponding uses of new and delete
+
+运算符 `new` 与运算符 `new []` 分配产生内存块上的内存布局并不一致。所以，使用运算符 `new []` 动态分配产生的对象数组内存块就必须使用运算符 `delete []` 释放。
+
 ### Store newed objects in smart pointers in standalone statements
+
+资源创建与构造 RAII 对象需要在一条单独的语句中完成。否则由于编译器优化可能导致资源创建操作与使用资源构造 RAII 对象操作存在其他操作，一旦该操作产生异常很可能将导致难以察觉的资源泄漏。
 
 ## Designs and Declarations
 
