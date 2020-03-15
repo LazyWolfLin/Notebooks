@@ -8,6 +8,14 @@ Resource:
 
 ## Introduction
 
+`make` 能够自动确定大型代码库中需要编译的文件，并发出指令重新编译它们。
+
+使用 `make` 之前，你必须编写一个名为 `makefile` 的文件，用于描述你的代码库中的文件关系并提供用于更新每个文件的命令。如果有了合适的 Makefile 文件，那么每次修改源码之后执行以下命令即可完成必要的重编译。
+
+```
+make
+```
+
 ## Command
 
 ```
@@ -55,3 +63,20 @@ Options:
                               Consider FILE to be infinitely new.
   --warn-undefined-variables  Warn when an undefined variable is referenced.
 ```
+
+## Makefile
+
+每一个 Makefile 文件通常由多个规则组成，每个规则具有 `target`、`prerequisites` 和 `recipe`：
+
+```
+target … : prerequisites …
+	recipe
+	…
+	…
+```
+
+`target` 通常是代码生成的文件名，也可以是可执行的操作的名称。
+
+`prerequisites` 是用于生成 `target` 的一个或多个文件。
+
+`recipe` 是供 `make` 执行的一条或多条命令。`recipe` 可以由多行组成，但是每一行都需要以一个 tab 符为起始。
