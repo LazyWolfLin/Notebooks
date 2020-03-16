@@ -113,12 +113,39 @@ C++ 可以暗自创建：默认构造函数、复制构造函数、移动构造�
 
 接口应该清晰明了，能够帮助用户正确使用且防止用户错误使用。可以考虑的方法有：建立新类型，限制类型上的操作，与内置类型兼容，保证接口的一致性，限制对象值。
 
-
 ### Treat class design as type design
+
+每次设计新的 class 或者新的 type 时需要先考虑以下问题：
+* 如何构造和析构对象实例？
+* 对象的初始化和对象的赋值有什么区别？
+* 对象是否需要值传递，如何实现拷贝构造？
+* 成员变量的合法值区间？
+* 是否继承自其他 class 或 type，基类有哪些约束？
+* 是否可以作为基类，是否需要虚析构函数？
+* 需要哪些类型转换？
+* 需要哪些运算符和成员函数？
+* 哪些默认函数需要删除？
+* 哪些成员变量会被哪个类调用？
+* 异常安全吗？线程安全吗？
+* 可以更一般化变成一个 class template 吗？
+* 新类可以被 non-member 函数或者 templates 代替吗？
+
 ### Prefer pass-by-reference-to-const to pass-by-value
+
+默认情况下，C++ 采用值传递，但是引用传递比值传递更为高效，而且可以避免对象切割问（派生类对象通过值传递后被视为基类对象，切割了派生类成员）。
+
 ### Don't try to return a reference when you must return an object
+
+必须返回对象时不要妄图返回其引用，否则可能返回一个空引用，也可能让等于运算恒成立。
+
 ### Declare data members private
+
+将成员变量声明为 private，有利于数据访问的一致性和数据访问权限控制，并保证了成员变量的约束条件和封装性。而 protected 和 public 成员变量都不具有封装性。
+
 ### Prefer non-member non-friend functions to member functions
+
+用 non-member 函数和 non-friend 函数代替 member 函数，可以增强类的封装性和可扩展性，减少编译依赖。
+
 ### Declare non-member functions when type conversions should apply to all parameters
 ### Consider support for a non-throwing swap
 
