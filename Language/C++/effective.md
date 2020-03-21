@@ -147,12 +147,29 @@ C++ 可以暗自创建：默认构造函数、复制构造函数、移动构造�
 用 non-member 函数和 non-friend 函数代替 member 函数，可以增强类的封装性和可扩展性，减少编译依赖。
 
 ### Declare non-member functions when type conversions should apply to all parameters
+
+如果某个函数的所有参数都需要支持类型转换，那么这个函数必定是一个 non-member 函数。
+
 ### Consider support for a non-throwing swap
+
+C++ 不允许用户改变命名空间 std 内任何东西，除了特化 std 内的标准模板，比如 std::swap。
+
+C++ 只允许对 class templates 进行偏特化，不允许对 function templates 进行偏特化。
+
+如果特化的 std::swap 无法对成员变量进行操作，可以让类提供一个 public 成员函数 swap 来完成交换操作，并在特化的 std::swap 中调用它。
 
 ## Implementations
 
+设计是优雅，实现则繁琐。
+
 ### Postpone variable definitions as long as possible
+
+尽可能延后变量的定义，有利于代码的优雅和效率。
+
 ### Minimize casting
+
+尽量避免转型操作。如果不能避免，那么将它们封装在函数中而非交由用户操作。同时尽量使用 C++ 风格的类型转换，因为它们更容易被发现。
+
 ### Avoid returning "handles" to object internals
 ### Strive for exception-safe code
 ### Understand the ins and outs of inlining
