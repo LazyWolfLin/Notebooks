@@ -171,9 +171,25 @@ C++ 只允许对 class templates 进行偏特化，不允许对 function templat
 尽量避免转型操作。如果不能避免，那么将它们封装在函数中而非交由用户操作。同时尽量使用 C++ 风格的类型转换，因为它们更容易被发现。
 
 ### Avoid returning "handles" to object internals
+
+返回指向对象内部的 handle 将有破坏对象封装、产生虚悬 handle 等风险。
+
 ### Strive for exception-safe code
+
+异常安全函数意味着当异常抛出时不产生资源泄漏也不造成数据破坏。
+
+异常安全函数有三个等级：
+1. 基本（basic）异常保证：若函数抛出异常，则程序处于某个有效状态。不泄漏资源，也不会破坏对象和数据。
+2. 强（strong）异常保证：若函数抛出异常，则程序状态不变，即会恰好地被回滚到该函数调用前的状态。虽然，强异常保证通常可以采用“copy and swap”的方法实现，但并非所有函数都具有实现的条件或者实现的意义。
+3. 不抛出（nothrow）异常保证：函数绝不抛出异常。
+
 ### Understand the ins and outs of inlining
+
+inline 函数能够节约函数调用的开销，但同时也可能导致代码膨胀、内存换页频繁以及 Cache 命中率低等问题。因此，慎重使用 inline 关键字，甚至将使用 inline 关键字的工作留到优化时。
+
 ### Minimize compilation dependencies between files
+
+编译依赖是 C++ 编译时间的重要影响因素。编译器必须在编译期间知道对象大小，这导致 C++ 难以将类的声明和定义分离。为了使编译依赖最小化，需要在实现中让头文件尽量自我满足或者依赖于其他文件中的声明。可用的方法有：使用引用或指针代替对象、前置声明、声明与定义分离到不同的头文件。
 
 ## Inheritance and Object-Oriented Design
 
