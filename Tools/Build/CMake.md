@@ -2,7 +2,7 @@
 
 CMake is an extensible, open-source system that manages the build process in an operating system and in a compiler-independent manner. Unlike many cross-platform systems, CMake is designed to be used in conjunction with the native build environment. Simple configuration files placed in each source directory (called CMakeLists.txt files) are used to generate standard build files (e.g., makefiles on Unix and projects/workspaces in Windows MSVC) which are used in the usual way. 
 
-Version: 3.15
+Version: 3.13
 
 Resource:
 * [CMake Tutorial](https://cmake.org/cmake-tutorial/)
@@ -46,8 +46,6 @@ Options
   -E                           = CMake command mode.
   -L[A][H]                     = List non-advanced cached variables.
   --build <dir>                = Build a CMake-generated project binary tree.
-  --install <dir>              = Install a CMake-generated project binary
-                                 tree.
   --open <dir>                 = Open generated project in the associated
                                  application.
   -N                           = View mode only.
@@ -56,9 +54,6 @@ Options
   --graphviz=[file]            = Generate graphviz of dependencies, see
                                  CMakeGraphVizOptions.cmake for more.
   --system-information [file]  = Dump information about this system.
-  --loglevel=<ERROR|WARNING|NOTICE|STATUS|VERBOSE|DEBUG|TRACE>
-                               = Set the verbosity of messages from CMake
-                                 files.
   --debug-trycompile           = Do not delete the try_compile build tree.
                                  Only useful on one try_compile at a time.
   --debug-output               = Put cmake in a debug mode.
@@ -101,37 +96,125 @@ Options
 * Scripts (`<script>.cmake`)
 * Modules (`<module>.cmake`)
 
-### `PROJECT`
+## CMake Command
 
-``` CMake
-PROJECT(projectname [CXX] [C] [Java])
-```
+### Scripting Commands
 
-`PROJECT`指令用于定义项目名称，并制定项目支持的语言，默认支持所有语言。
+These commands are always available.
 
-### `SET`
+* [break](https://cmake.org/cmake/help/latest/command/break.html)
+* [cmake_host_system_information](https://cmake.org/cmake/help/latest/command/cmake_host_system_information.html)
+* [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html)
+* [cmake_parse_arguments](https://cmake.org/cmake/help/latest/command/cmake_parse_arguments.html)
+* [cmake_policy](https://cmake.org/cmake/help/latest/command/cmake_policy.html)
+* [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html)
+* [continue](https://cmake.org/cmake/help/latest/command/continue.html)
+* [elseif](https://cmake.org/cmake/help/latest/command/elseif.html)
+* [else](https://cmake.org/cmake/help/latest/command/else.html)
+* [endforeach](https://cmake.org/cmake/help/latest/command/endforeach.html)
+* [endfunction](https://cmake.org/cmake/help/latest/command/endfunction.html)
+* [endif](https://cmake.org/cmake/help/latest/command/endif.html)
+* [endmacro](https://cmake.org/cmake/help/latest/command/endmacro.html)
+* [endwhile](https://cmake.org/cmake/help/latest/command/endwhile.html)
+* [execute_process](https://cmake.org/cmake/help/latest/command/execute_process.html)
+* [file](https://cmake.org/cmake/help/latest/command/file.html)
+* [find_file](https://cmake.org/cmake/help/latest/command/find_file.html)
+* [find_library](https://cmake.org/cmake/help/latest/command/find_library.html)
+* [find_package](https://cmake.org/cmake/help/latest/command/find_package.html)
+* [find_path](https://cmake.org/cmake/help/latest/command/find_path.html)
+* [find_program](https://cmake.org/cmake/help/latest/command/find_program.html)
+* [foreach](https://cmake.org/cmake/help/latest/command/foreach.html)
+* [function](https://cmake.org/cmake/help/latest/command/function.html)
+* [get_cmake_property](https://cmake.org/cmake/help/latest/command/get_cmake_property.html)
+* [get_directory_property](https://cmake.org/cmake/help/latest/command/get_directory_property.html)
+* [get_filename_component](https://cmake.org/cmake/help/latest/command/get_filename_component.html)
+* [get_property](https://cmake.org/cmake/help/latest/command/get_property.html)
+* [if](https://cmake.org/cmake/help/latest/command/if.html)
+* [include](https://cmake.org/cmake/help/latest/command/include.html)
+* [include_guard](https://cmake.org/cmake/help/latest/command/include_guard.html)
+* [list](https://cmake.org/cmake/help/latest/command/list.html)
+* [macro](https://cmake.org/cmake/help/latest/command/macro.html)
+* [mark_as_advanced](https://cmake.org/cmake/help/latest/command/mark_as_advanced.html)
+* [math](https://cmake.org/cmake/help/latest/command/math.html)
+* [message](https://cmake.org/cmake/help/latest/command/message.html)
+* [option](https://cmake.org/cmake/help/latest/command/option.html)
+* [return](https://cmake.org/cmake/help/latest/command/return.html)
+* [separate_arguments](https://cmake.org/cmake/help/latest/command/separate_arguments.html)
+* [set_directory_properties](https://cmake.org/cmake/help/latest/command/set_directory_properties.html)
+* [set_property](https://cmake.org/cmake/help/latest/command/set_property.html)
+* [set](https://cmake.org/cmake/help/latest/command/set.html)
+* [site_name](https://cmake.org/cmake/help/latest/command/site_name.html)
+* [string](https://cmake.org/cmake/help/latest/command/string.html)
+* [unset](https://cmake.org/cmake/help/latest/command/unset.html)
+* [variable_watch](https://cmake.org/cmake/help/latest/command/variable_watch.html)
+* [while](https://cmake.org/cmake/help/latest/command/while.html)
 
-```
-SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
-```
+### Project Commands
 
-`SET`指令用于显式定义变量。
+These commands are available only in CMake projects.
 
-### `MESSAGE`
+* [add_compile_definitions](https://cmake.org/cmake/help/latest/command/add_compile_definitions.html)
+* [add_compile_options](https://cmake.org/cmake/help/latest/command/add_compile_options.html)
+* [add_custom_command](https://cmake.org/cmake/help/latest/command/add_custom_command.html)
+* [add_custom_target](https://cmake.org/cmake/help/latest/command/add_custom_target.html)
+* [add_definitions](https://cmake.org/cmake/help/latest/command/add_definitions.html)
+* [add_dependencies](https://cmake.org/cmake/help/latest/command/add_dependencies.html)
+* [add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html)
+* [add_library](https://cmake.org/cmake/help/latest/command/add_library.html)
+* [add_link_options](https://cmake.org/cmake/help/latest/command/add_link_options.html)
+* [add_subdirectory](https://cmake.org/cmake/help/latest/command/add_subdirectory.html)
+* [add_test](https://cmake.org/cmake/help/latest/command/add_test.html)
+* [aux_source_directory](https://cmake.org/cmake/help/latest/command/aux_source_directory.html)
+* [build_command](https://cmake.org/cmake/help/latest/command/build_command.html)
+* [create_test_sourcelist](https://cmake.org/cmake/help/latest/command/create_test_sourcelist.html)
+* [define_property](https://cmake.org/cmake/help/latest/command/define_property.html)
+* [enable_language](https://cmake.org/cmake/help/latest/command/enable_language.html)
+* [enable_testing](https://cmake.org/cmake/help/latest/command/enable_testing.html)
+* [export](https://cmake.org/cmake/help/latest/command/export.html)
+* [fltk_wrap_ui](https://cmake.org/cmake/help/latest/command/fltk_wrap_ui.html)
+* [get_source_file_property](https://cmake.org/cmake/help/latest/command/get_source_file_property.html)
+* [get_target_property](https://cmake.org/cmake/help/latest/command/get_target_property.html)
+* [get_test_property](https://cmake.org/cmake/help/latest/command/get_test_property.html)
+* [include_directories](https://cmake.org/cmake/help/latest/command/include_directories.html)
+* [include_external_msproject](https://cmake.org/cmake/help/latest/command/include_external_msproject.html)
+* [include_regular_expression](https://cmake.org/cmake/help/latest/command/include_regular_expression.html)
+* [install](https://cmake.org/cmake/help/latest/command/install.html)
+* [link_directories](https://cmake.org/cmake/help/latest/command/link_directories.html)
+* [link_libraries](https://cmake.org/cmake/help/latest/command/link_libraries.html)
+* [load_cache](https://cmake.org/cmake/help/latest/command/load_cache.html)
+* [project](https://cmake.org/cmake/help/latest/command/project.html)
+* [qt_wrap_cpp](https://cmake.org/cmake/help/latest/command/qt_wrap_cpp.html)
+* [qt_wrap_ui](https://cmake.org/cmake/help/latest/command/qt_wrap_ui.html)
+* [remove_definitions](https://cmake.org/cmake/help/latest/command/remove_definitions.html)
+* [set_source_files_properties](https://cmake.org/cmake/help/latest/command/set_source_files_properties.html)
+* [set_target_properties](https://cmake.org/cmake/help/latest/command/set_target_properties.html)
+* [set_tests_properties](https://cmake.org/cmake/help/latest/command/set_tests_properties.html)
+* [source_group](https://cmake.org/cmake/help/latest/command/source_group.html)
+* [target_compile_definitions](https://cmake.org/cmake/help/latest/command/target_compile_definitions.html)
+* [target_compile_features](https://cmake.org/cmake/help/latest/command/target_compile_features.html)
+* [target_compile_options](https://cmake.org/cmake/help/latest/command/target_compile_options.html)
+* [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html)
+* [target_link_directories](https://cmake.org/cmake/help/latest/command/target_link_directories.html)
+* [target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html)
+* [target_link_options](https://cmake.org/cmake/help/latest/command/target_link_options.html)
+* [target_sources](https://cmake.org/cmake/help/latest/command/target_sources.html)
+* [try_compile](https://cmake.org/cmake/help/latest/command/try_compile.html)
+* [try_run](https://cmake.org/cmake/help/latest/command/try_run.html)
 
-```
-MESSAGE([SEND_ERROR|STATUS|FATAL_ERROR] "message to display" ... )
-```
+### CTest Commands
 
-`MESSAGE`指令用于向终端输出用户定义的消息，包含了三种类型：
-`SEND_ERROR`：产生错误，构建过程被跳过。
-`STATUS`：输出前缀为`--`的消息。
-`FATAL_ERROR`：立即终止所以`CMake`的构建过程。
+These commands are available only in CTest scripts.
 
-### `ADD_EXECUTABLE`
-
-```
-ADD_EXECUTABLE(executable_file sourse_file_list)
-```
-
-`ADD_EXECUTABLE`指令用于定义生成的可执行文件名和相关的源文件。
+* [ctest_build](https://cmake.org/cmake/help/latest/command/ctest_build.html)
+* [ctest_configure](https://cmake.org/cmake/help/latest/command/ctest_configure.html)
+* [ctest_coverage](https://cmake.org/cmake/help/latest/command/ctest_coverage.html)
+* [ctest_empty_binary_directory](https://cmake.org/cmake/help/latest/command/ctest_empty_binary_directory.html)
+* [ctest_memcheck](https://cmake.org/cmake/help/latest/command/ctest_memcheck.html)
+* [ctest_read_custom_files](https://cmake.org/cmake/help/latest/command/ctest_read_custom_files.html)
+* [ctest_run_script](https://cmake.org/cmake/help/latest/command/ctest_run_script.html)
+* [ctest_sleep](https://cmake.org/cmake/help/latest/command/ctest_sleep.html)
+* [ctest_start](https://cmake.org/cmake/help/latest/command/ctest_start.html)
+* [ctest_submit](https://cmake.org/cmake/help/latest/command/ctest_submit.html)
+* [ctest_test](https://cmake.org/cmake/help/latest/command/ctest_test.html)
+* [ctest_update](https://cmake.org/cmake/help/latest/command/ctest_update.html)
+* [ctest_upload](https://cmake.org/cmake/help/latest/command/ctest_upload.html)
