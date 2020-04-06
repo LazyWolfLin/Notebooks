@@ -194,9 +194,29 @@ inline 函数能够节约函数调用的开销，但同时也可能导致代码�
 ## Inheritance and Object-Oriented Design
 
 ### Make sure public inheritance models "is-a"
+
+public 继承意味着“is-a”的关系，即每一个派生类对象都是一个基类对象，所有适用于基类对象上的操作都应当适用于派生类对象。
+
 ### Avoid hiding inherited names
+
+派生类的成员能够遮盖基类的成员，但这和继承关系相违背。
+
 ### Differentiate between inheritance of interface and inheritance of implementation
+
+virtual 函数：
+* 声明一个纯虚（pure virtual）函数是为了让派生类只继承函数的接口。
+* 声明一个非纯虚（impure virtual）函数是为了让派生类继承函数的接口和默认实现。
+* 声明一个非虚（non-virtual）函数是为了让派生类同时继承函数的接口和实现。
+
+使用非纯虚（impure virtual）函数有忘记为新的派生类提供正确实现的风险，可以使用其他手法代替，比如使用纯虚函数强制派生类提供实现同时搭配一份默认实现或者一个非虚函数供派生类调用。
+
 ### Consider alternatives to virtual functions
+
+virtual 函数的代替方案：
+* 使用 Non-Virtual Interface 手法实现 Template Method 模式：使用一个 non-virtual 函数作为接口，并在它的实现中调用一个 private virtual 函数。
+* 传统的 Strategy 模式：使用另一套类继承体系的 virtual 函数代替。
+* 使用函数指针或者 std::function 完成 Strategy 模式
+
 ### Never redefine an inherited non-virtual function
 ### Never redefine a function's inherited default parameter value
 ### Model "has-a" or "is-implemented-in-terms-of" through composition
