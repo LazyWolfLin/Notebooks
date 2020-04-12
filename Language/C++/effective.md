@@ -218,9 +218,25 @@ virtual 函数的代替方案：
 * 使用函数指针或者 std::function 完成 Strategy 模式
 
 ### Never redefine an inherited non-virtual function
+
+绝对不要重定义继承来的 non-virtual 函数，否则派生类与基类将有不同的表现违背了继承关系。
+
 ### Never redefine a function's inherited default parameter value
+
+绝对不要重定义继承来的默认参数值，否则派生类与基类将有不同的表现违背了继承关系。
+
 ### Model "has-a" or "is-implemented-in-terms-of" through composition
+
+复合意味着“has-a”或者“is-implemented-in-terms-of”的关系。
+
 ### Use private inheritance judiciously
+
+private 继承规则：
+1. 编译器不会做派生类到基类的隐式转换。
+2. 基类所有成员在派生类中都是 private 成员。
+
+private 继承意味着“implemented-in-terms-of”的关系，即派生类根据基类对象进行实现，基类成员只是是派生类实现上的细节。private 继承仅是一种实现技术，其意义只在于实现层面，而无其他设计层面上的意义。
+
 ### Use multiple inheritance judiciously
 
 ## Templates and Generic Programming
