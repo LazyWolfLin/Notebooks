@@ -239,10 +239,24 @@ private 继承意味着“implemented-in-terms-of”的关系，即派生类根�
 
 ### Use multiple inheritance judiciously
 
+多重继承是非常具有争议的问题。它带来复杂性、性能开销甚至还可能产生歧义，但它也有适用的情况。当需要 public 继承一个接口类同时 private 继承一个辅助类的情况下适合使用多重继承。
+
+virtual 继承能够解决钻石型多重继承带来的重复基类变量问题，但需要付出性能代价，甚至可能导致初始化异常问题。
+
 ## Templates and Generic Programming
 
 ### Understand implicit interfaces and compile-time polymorphism
+
+class 和 template 都支持接口（interfaces）和多态（polymorphism）。但 class 支持显式接口和运行期多态，而 template 支持隐式接口和编译期多态。
+
+显式接口由函数签名构成，在 class 的声明中明确可见。隐式接口由有效表达式确定，由使用 template 的 class 提供具体实现。
+
+运行期多态指在运行期时根据对象的动态类型决定具体的被调函数。编译期多态指在编译期时根据 template 参数实例化出不同的被调函数。
+
 ### Understand the two meanings of typename
+
+当你想在 template 中使用一个嵌套从属类型名称时，需要在它前面使用关键字 typename，用以消除歧义表明该名称是类型名而非成员变量名。但 typename 不能出现在 base class list（基类列表）和 member initialization list（成员初始化列表）中。
+
 ### Know how to access names in templatized base classes
 ### Factor parameter-independent code out of templates
 ### Use member function templates to accept "all compatible types"
