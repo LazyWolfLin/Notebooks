@@ -2,10 +2,8 @@
 
 CMake is an extensible, open-source system that manages the build process in an operating system and in a compiler-independent manner. Unlike many cross-platform systems, CMake is designed to be used in conjunction with the native build environment. Simple configuration files placed in each source directory (called CMakeLists.txt files) are used to generate standard build files (e.g., makefiles on Unix and projects/workspaces in Windows MSVC) which are used in the usual way. 
 
-Version: 3.13
+Version: 3.16
 
-Resource:
-* [CMake Tutorial](https://cmake.org/cmake-tutorial/)
 
 ## Introduction
 
@@ -46,6 +44,8 @@ Options
   -E                           = CMake command mode.
   -L[A][H]                     = List non-advanced cached variables.
   --build <dir>                = Build a CMake-generated project binary tree.
+  --install <dir>              = Install a CMake-generated project binary
+                                 tree.
   --open <dir>                 = Open generated project in the associated
                                  application.
   -N                           = View mode only.
@@ -54,6 +54,10 @@ Options
   --graphviz=[file]            = Generate graphviz of dependencies, see
                                  CMakeGraphVizOptions.cmake for more.
   --system-information [file]  = Dump information about this system.
+  --log-level=<ERROR|WARNING|NOTICE|STATUS|VERBOSE|DEBUG|TRACE>
+                               = Set the verbosity of messages from CMake
+                                 files.  --loglevel is also accepted for
+                                 backward compatibility reasons.
   --debug-trycompile           = Do not delete the try_compile build tree.
                                  Only useful on one try_compile at a time.
   --debug-output               = Put cmake in a debug mode.
@@ -62,6 +66,8 @@ Options
                                  expansion.
   --trace-source=<file>        = Trace only this CMake file/module.  Multiple
                                  options allowed.
+  --trace-redirect=<file>      = Redirect trace output to a file instead of
+                                 stderr.
   --warn-uninitialized         = Warn about uninitialized values.
   --warn-unused-vars           = Warn about unused variables.
   --no-warn-unused-cli         = Don't warn about command line options.
@@ -92,15 +98,25 @@ Options
 
 ## CMake Language
 
+CMake input files are written in the “CMake Language” in source files named `CMakeLists.txt` or ending in a `.cmake` file name extension.
+
+CMake Language source files in a project are organized into:
+
 * Directories (`CMakeLists.txt`)
+
+  When CMake processes a project source tree, the entry point is a source file called `CMakeLists.txt` in the top-level source directory. This file may contain the entire build specification or use the `add_subdirectory()` command to add subdirectories to the build. Each subdirectory added by the command must also contain a `CMakeLists.txt` file as the entry point to that directory. For each source directory whose `CMakeLists.txt` file is processed CMake generates a corresponding directory in the build tree to act as the default working and output directory.
+
 * Scripts (`<script>.cmake`)
+
+  An individual `<script>.cmake` source file may be processed in script mode by using the cmake(1) command-line tool with the `-P` option. Script mode simply runs the commands in the given CMake Language source file and does not generate a build system. It does not allow CMake commands that define build targets or actions.
+
 * Modules (`<module>.cmake`)
+
+  CMake Language code in either `Directories` or `Scripts` may use the `include()` command to load a `<module>.cmake` source file in the scope of the including context. See the cmake-modules(7) manual page for documentation of modules included with the CMake distribution. Project source trees may also provide their own modules and specify their location(s) in the `CMAKE_MODULE_PATH` variable.
 
 ## CMake Command
 
 ### Scripting Commands
-
-These commands are always available.
 
 * [break](https://cmake.org/cmake/help/latest/command/break.html)
 * [cmake_host_system_information](https://cmake.org/cmake/help/latest/command/cmake_host_system_information.html)
@@ -109,8 +125,8 @@ These commands are always available.
 * [cmake_policy](https://cmake.org/cmake/help/latest/command/cmake_policy.html)
 * [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html)
 * [continue](https://cmake.org/cmake/help/latest/command/continue.html)
-* [elseif](https://cmake.org/cmake/help/latest/command/elseif.html)
 * [else](https://cmake.org/cmake/help/latest/command/else.html)
+* [elseif](https://cmake.org/cmake/help/latest/command/elseif.html)
 * [endforeach](https://cmake.org/cmake/help/latest/command/endforeach.html)
 * [endfunction](https://cmake.org/cmake/help/latest/command/endfunction.html)
 * [endif](https://cmake.org/cmake/help/latest/command/endif.html)
@@ -140,9 +156,9 @@ These commands are always available.
 * [option](https://cmake.org/cmake/help/latest/command/option.html)
 * [return](https://cmake.org/cmake/help/latest/command/return.html)
 * [separate_arguments](https://cmake.org/cmake/help/latest/command/separate_arguments.html)
+* [set](https://cmake.org/cmake/help/latest/command/set.html)
 * [set_directory_properties](https://cmake.org/cmake/help/latest/command/set_directory_properties.html)
 * [set_property](https://cmake.org/cmake/help/latest/command/set_property.html)
-* [set](https://cmake.org/cmake/help/latest/command/set.html)
 * [site_name](https://cmake.org/cmake/help/latest/command/site_name.html)
 * [string](https://cmake.org/cmake/help/latest/command/string.html)
 * [unset](https://cmake.org/cmake/help/latest/command/unset.html)
@@ -150,8 +166,6 @@ These commands are always available.
 * [while](https://cmake.org/cmake/help/latest/command/while.html)
 
 ### Project Commands
-
-These commands are available only in CMake projects.
 
 * [add_compile_definitions](https://cmake.org/cmake/help/latest/command/add_compile_definitions.html)
 * [add_compile_options](https://cmake.org/cmake/help/latest/command/add_compile_options.html)
@@ -183,8 +197,6 @@ These commands are available only in CMake projects.
 * [link_libraries](https://cmake.org/cmake/help/latest/command/link_libraries.html)
 * [load_cache](https://cmake.org/cmake/help/latest/command/load_cache.html)
 * [project](https://cmake.org/cmake/help/latest/command/project.html)
-* [qt_wrap_cpp](https://cmake.org/cmake/help/latest/command/qt_wrap_cpp.html)
-* [qt_wrap_ui](https://cmake.org/cmake/help/latest/command/qt_wrap_ui.html)
 * [remove_definitions](https://cmake.org/cmake/help/latest/command/remove_definitions.html)
 * [set_source_files_properties](https://cmake.org/cmake/help/latest/command/set_source_files_properties.html)
 * [set_target_properties](https://cmake.org/cmake/help/latest/command/set_target_properties.html)
@@ -197,13 +209,12 @@ These commands are available only in CMake projects.
 * [target_link_directories](https://cmake.org/cmake/help/latest/command/target_link_directories.html)
 * [target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html)
 * [target_link_options](https://cmake.org/cmake/help/latest/command/target_link_options.html)
+* [target_precompile_headers](https://cmake.org/cmake/help/latest/command/target_precompile_headers.html)
 * [target_sources](https://cmake.org/cmake/help/latest/command/target_sources.html)
 * [try_compile](https://cmake.org/cmake/help/latest/command/try_compile.html)
 * [try_run](https://cmake.org/cmake/help/latest/command/try_run.html)
 
 ### CTest Commands
-
-These commands are available only in CTest scripts.
 
 * [ctest_build](https://cmake.org/cmake/help/latest/command/ctest_build.html)
 * [ctest_configure](https://cmake.org/cmake/help/latest/command/ctest_configure.html)
@@ -218,3 +229,7 @@ These commands are available only in CTest scripts.
 * [ctest_test](https://cmake.org/cmake/help/latest/command/ctest_test.html)
 * [ctest_update](https://cmake.org/cmake/help/latest/command/ctest_update.html)
 * [ctest_upload](https://cmake.org/cmake/help/latest/command/ctest_upload.html)
+
+## Resource:
+
+* [CMake Tutorial](https://cmake.org/cmake-tutorial/)
