@@ -344,3 +344,86 @@ class 和 template 都支持接口（interfaces）和多态（polymorphism）。
 ### Make non-leaf classes abstract
 ### Understand how to combine C++ and C in the same program
 ### Familiarize yourself with the language standard
+
+## Deducing Types
+
+### Understand template type deduction.
+
+对于函数模板：
+
+``` C++
+template<typename T>
+void f(ParamType param);
+
+f(expr);
+```
+
+在编译期时，编译器会根据 `expr` 推导出两个类型：`T` 和 `ParamType`。由于 `ParamType` 可能包含一些类型限定符，所以两个类型往往不一致。类型推导时，首先根据 `expr` 推导出 `ParamType`，再由 `ParamType` 推导出 `T`。根据 `ParamType` 形式的不同可分为三种情况：
+
+* `ParamType` 是指针或引用，但不是 Universal Reference
+* `ParamType` 是 Universal Reference
+* `ParamType` 不是指针也不是引用
+
+### Understand auto type deduction.
+
+通常情况下，`auto` 采用与模板相同的类型推导规则，除了 `auto` 类型推导时会假定初始化表达式 `{ value, ... }` 代表 `std::initializer_list`，而模板类型推导将失败。
+
+### Understand decltype.
+
+通常情况下，`decltype` 会得到变量或者表达式的类型而不作任何修改。
+
+`decltype(auto)` 意味着像 `auto` 一样从初始化表达式出发来推导类型但采用 `decltype` 规则。
+
+### Know how to view deduced types.
+
+## auto
+### Prefer auto to explicit type declarations.
+### Use the explicitly typed initializer idiom when auto deduces undesired types.
+
+## Moving to Modern C++
+### Distinguish between () and {} when creating objects.
+### Prefer nullptr to 0 and NULL.
+### Prefer alias declarations to typedefs.
+### Prefer scoped enums to unscoped enuns.
+### Prefer deleted functions to private undefined ones.
+### Declare overriding functions overri.de.
+### Prefer const_iterators to iterators.
+### Declare functions noexcept ifthey won't emit exceptions.
+### Use constexpr whenever possible.
+### Make const member functions thread safe.
+### Understand special member function generation.
+
+## Smart Pointers
+### Use std::unique_ptr for exclusive-ownership resource management.
+### Use std::shared_ptr for shared-ownership resource management.
+### Use std::weak_ptr for std::shared_ptr-like pointers that can dangle.
+### Prefer std::make_unique and std::make_shared to direct use of new.
+### When using the Pimpl Idiom, define special member functions in the implementation file.
+
+## Rvalue References, Move Semantics, and Perfect Forwarding
+### Understand std::move and std::forward.
+### Distinguish universal references from rvalue references.
+### Use std::move on rvalue references, std::forward on universal references.
+### Avoid overloading on universal references.
+### Familiarize yourself with alternatives to overloading on universal references.
+### Understand reference collapsing.
+### Assume that move operations are not present, not cheap, and not used.
+### Familiarize yourself with perfect forwarding failure cases.
+
+## Lambda Expressions
+### Avoid default capture modes.
+### Use init capture to move objects into closures.
+### Use decltype on auto&& parameters to std::forward them.
+### Prefer lambdas to std::bind.
+
+## The Concurrency API
+### Prefer task-based programming to thread-based.
+### Specify std::launch::async ifasynchronicityis essential.
+### Make std::threads unjoinable on all paths.
+### Be aware of varying thread handle destructor behavior.
+### Consider voi_d futures for one-shot event communication.
+### Use std::atoni.c for concurrency, volatile for special memory.
+
+## Tweaks
+### Consider pass by value for copyable parameters that are cheap to move and always copied.
+### Consider emplacement instead of insertion.
