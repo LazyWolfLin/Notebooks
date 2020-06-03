@@ -280,7 +280,14 @@ class 和 template 都支持接口（interfaces）和多态（polymorphism）。
 当 non-member function templates 需要支持隐式类型转换时，可将其声明为相关 class templates 的 friend non-member function templates，以保证编译器在特化 class templates 时特化相关的 friend non-member function templates。
 
 ### Use traits classes for information about types
+
+C++ STL 中有五种 Iterator：Input Iterator、Output Iterator、Forward Iterator、Bidirectional Iterator、Random Access Iterator。
+
+Traits 并不是 C++ 的关键字也不是预先定义好的组件，而是一种技术，也是 C++ 程序员之间的协议。Traits 通过一个 template struct 和一组特化版本使得编译器在编译期获得类型相关信息。
+
 ### Be aware of template metaprogramming
+
+template metaprogramming 有诸多好处：编译期类型检查、性能优化。
 
 ## Customizing new and delete
 
