@@ -384,12 +384,27 @@ f(expr);
 ### Know how to view deduced types.
 
 ## auto
+
 ### Prefer auto to explicit type declarations.
+
+使用 `auto` 的好处：
+* 避免变量未初始化风险
+* 无需人肉推导类型
+* 可以使用闭包类型声明变量
+* 代码可维护性更高
+
 ### Use the explicitly typed initializer idiom when auto deduces undesired types.
 
+C++ 的隐式代理类，比如 `std::vector<bool>::reference`，会导致 `auto` 推导出不正确的类型，此时需要使用带显式类型转换的初始值帮助 `auto` 推导出正确的类型。
+
 ## Moving to Modern C++
+
 ### Distinguish between () and {} when creating objects.
+
 ### Prefer nullptr to 0 and NULL.
+
+字面常量 0 和 NULL 在 C++ 中都不是指针类型，只是当 C++ 在只能使用指针的语境中发现它们才勉强将它们解释为指针。因此在指针类型和整型之间重载是一件有危险的事，毕竟总会有蠢货固执的使用 0 和 NULL 代替 `nullptr`。
+
 ### Prefer alias declarations to typedefs.
 ### Prefer scoped enums to unscoped enuns.
 ### Prefer deleted functions to private undefined ones.
