@@ -292,7 +292,15 @@ template metaprogramming 有诸多好处：编译期类型检查、性能优化�
 ## Customizing new and delete
 
 ### Understand the behavior of the new-handler
+
+在内存分配失败之后 `operator new` 抛出异常之前，`operator new` 会先调用一个客户指定的错误处理函数，一个所谓的 `new-handler`。
+
+惯用法 CRTP（curiously recurring template pattern）：类型 T 继承自一个 templatized base class，而后者又以类型 T 作为模板类型参数，即：`Class T: public TemplatizedBaseClass<T>;`。
+
 ### Understand when it makes sense to replace new and delete
+
+有些时候可能需要自定义运算符 `new` 和 `delete`，比如，检查错误时、收集数据时、优化性能时、聚集重要数据时。
+
 ### Adhere to convention when writing new and delete
 ### Write placement delete if you write placement new
 
