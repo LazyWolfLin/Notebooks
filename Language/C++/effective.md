@@ -389,7 +389,7 @@ f(expr);
 
 使用 `auto` 的好处：
 * 避免变量未初始化风险
-* 无需人肉推导类型
+* 无需人肉推导复杂冗长类型
 * 可以使用闭包类型声明变量
 * 代码可维护性更高
 
@@ -406,7 +406,13 @@ C++ 的隐式代理类，比如 `std::vector<bool>::reference`，会导致 `auto
 字面常量 0 和 NULL 在 C++ 中都不是指针类型，只是当 C++ 在只能使用指针的语境中发现它们才勉强将它们解释为指针。因此在指针类型和整型之间重载是一件有危险的事，毕竟总会有蠢货固执的使用 0 和 NULL 代替 `nullptr`。
 
 ### Prefer alias declarations to typedefs.
+
+类型别名相比于 `typedef` 的好处不只在于更易阅读的函数指针类型，更在于别名模板。
+
 ### Prefer scoped enums to unscoped enuns.
+
+在大括号中声明的名称，它的可见性被限定在括号的作用域内，但 C++98 风格的枚举类型是个例外。这种枚举量名称泄露到作用域外的枚举类型称为不限范围的枚举类型（Unscoped enumeration），C++11 中新增了限定作用域的枚举类型（Scoped enumerations）。限定作用域的枚举类型不仅能够降低名称空间污染，还能避免枚举量隐式转换到整型甚至浮点型。
+
 ### Prefer deleted functions to private undefined ones.
 ### Declare overriding functions overri.de.
 ### Prefer const_iterators to iterators.
