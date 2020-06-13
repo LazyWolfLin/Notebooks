@@ -430,7 +430,13 @@ C++ 的隐式代理类，比如 `std::vector<bool>::reference`，会导致 `auto
 C++ 的虚函数重写（override）要求基类与派生类具有完全相同函数签名的虚函数，即函数名称、函数形参、函数常量性、函数返回值、函数异常、函数引用饰词都需要完全相同的虚函数。C++11 提供了 override 和 final 声明，用于声明派生类函数重写基类虚函数和阻止派生类重写基类虚函数。
 
 ### Prefer const_iterators to iterators.
+
+C++11 增强了对 const_iterator 的支持，在需要 iterator 而没有修改的需求时，应当使用 const_iterator。
+
 ### Declare functions noexcept ifthey won't emit exceptions.
+
+异常说明是函数接口的一部分，C++11 提供异常说明符 noexcept 专注于函数是否抛出异常这一信息，而 C++98 提供的动态异常说明 throw 则已被弃用并于 C++20 移除。具备 noexcept 声明的函数更可能被优化，但大多数函数都是异常中立，不具备 noexcept 性质，即函数本身不抛出异常但它们调用的函数可能抛出异常。
+
 ### Use constexpr whenever possible.
 ### Make const member functions thread safe.
 ### Understand special member function generation.
