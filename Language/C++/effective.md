@@ -313,8 +313,14 @@ template metaprogramming 有诸多好处：编译期类型检查、性能优化�
 ## Basics
 
 ### Distinguish between pointers and references
+
+pointers 和 references 看起来很不一样，但行为却非常相似，它们都间接指向其他对象。pointers 可以不指向任何对象，而 references 则必须指向某个对象，即必须有初值。pointers 可以被重新赋值，而 references 则总是指向初值。
+
 ### Prefer C++ style casts
 ### Never treat arrays polymorphically
+
+多态和指针算术不能混用，因为指针算术会按照基类大小进行运算，比如基类指针指向的派生类对象数组。
+
 ### Avoid gratuitous default constructors
 
 ## Operators
