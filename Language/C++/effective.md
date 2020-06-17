@@ -444,8 +444,20 @@ C++11 增强了对 const_iterator 的支持，在需要 iterator 而没有修改
 异常说明是函数接口的一部分，C++11 提供异常说明符 noexcept 专注于函数是否抛出异常这一信息，而 C++98 提供的动态异常说明 throw 则已被弃用并于 C++20 移除。具备 noexcept 声明的函数更可能被优化，但大多数函数都是异常中立，不具备 noexcept 性质，即函数本身不抛出异常但它们调用的函数可能抛出异常。
 
 ### Use constexpr whenever possible.
+
+constexpr 对象都具有 const 属性，并由编译期已知的值完成初始化；constexpr 函数是否在编译期完成计算则由调用时传入实参决定。若全部所有调用时传入的实参在编译期已知，则在编译期完成计算，可用于编译期常量的语境中。若任何一个调用时传入的实参在编译期未知，则在运行期完成计算，与普通函数无异。
+
 ### Make const member functions thread safe.
+
+即使在 const 成员函数中，也会有可变状态的更新，如修改 mutable 成员变量，使用 const_cast。因此，const 成员函数也需要线程安全性保证，除非可以确信它们不会用于并发语境中。
+
+在性能上，std::atomic 可能优于 std::mutex，但它仅适用于单个变量或内存区域的操作。
+
 ### Understand special member function generation.
+
+C++11 中，类的特殊成员函数增加到六个：默认构造、默认析构、拷贝构造、拷贝赋值、移动构造、移动赋值。
+
+当你显式声明了默认析构时，编译器就不再自行生成拷贝操作和移动操作。这个推断的依据是，显式声明默认析构代表常规的默认析构不适用于该对象，那么常规的拷贝操作和移动操作也不适用于该对象。因此，如果显式声明了拷贝操作、移动操作或者默认析构中的任何一个，那就需要同时声明他们全部。
 
 ## Smart Pointers
 ### Use std::unique_ptr for exclusive-ownership resource management.
