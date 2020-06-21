@@ -460,9 +460,27 @@ C++11 中，类的特殊成员函数增加到六个：默认构造、默认析�
 当你显式声明了默认析构时，编译器就不再自行生成拷贝操作和移动操作。这个推断的依据是，显式声明默认析构代表常规的默认析构不适用于该对象，那么常规的拷贝操作和移动操作也不适用于该对象。因此，如果显式声明了拷贝操作、移动操作或者默认析构中的任何一个，那就需要同时声明他们全部。
 
 ## Smart Pointers
+
+C++11 中有四种智能指针 std::unique_ptr、std::shared_ptr、std::weak_ptr 以及 C++98 遗留 C++17 弃用的 std::auto_ptr。
+
 ### Use std::unique_ptr for exclusive-ownership resource management.
+
+std::unique_ptr 用于管理独占所有权的资源。
+
+std::unique_ptr 很容易转换到 std::shared_ptr，所以资源创建函数一般返回 std::unique_ptr 再由用户选择是否转换。
+
+C++ 不支持从裸指针直接转换到 std::unique_ptr，因为这违背了 std::unique_ptr 的语义。
+
 ### Use std::shared_ptr for shared-ownership resource management.
+
+std::shared_ptr 用于管理非独占所有权的资源。
+
+std::shared_ptr 一般由两个指针组成，一个指针指向资源对象，另一个指针指向堆内存中存放引用计数等数据的控制块数据。
+
 ### Use std::weak_ptr for std::shared_ptr-like pointers that can dangle.
+
+std::weak_ptr 是 std::shared_ptr 的扩展，可用于缓存、观察者列表、避免环形 std::shared_ptr 等情况。
+
 ### Prefer std::make_unique and std::make_shared to direct use of new.
 ### When using the Pimpl Idiom, define special member functions in the implementation file.
 
