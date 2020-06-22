@@ -482,6 +482,11 @@ std::shared_ptr 一般由两个指针组成，一个指针指向资源对象，�
 std::weak_ptr 是 std::shared_ptr 的扩展，可用于缓存、观察者列表、避免环形 std::shared_ptr 等情况。
 
 ### Prefer std::make_unique and std::make_shared to direct use of new.
+
+使用 std::make_unique 和 std::make_shared 创建智能指针同直接使用 new 运算符创建智能指针相比，优势在于消除重复代码、改进异常安全，劣势在于不允许定制删除器。
+
+std::make_shared 能够减少内存分配次数，即资源对象和控制块在同一块动态申请的内存上，但释放内存的时间点也必须等到所有 std::shared_ptr 和 std::weak_ptr 都析构了才能释放该内存。
+
 ### When using the Pimpl Idiom, define special member functions in the implementation file.
 
 ## Rvalue References, Move Semantics, and Perfect Forwarding
