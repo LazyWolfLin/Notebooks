@@ -326,7 +326,11 @@ pointers 和 references 看起来很不一样，但行为却非常相似，它�
 ## Operators
 
 ### Be wary of user-defined conversion functions
+
+C++ 中有两类类型转换函数，单参数构造函数和隐式类型转换运算符，用于允许编译器进行隐式类型转换。它们可能在用户预期之外被调用而且难以发现，因此最好不要提供任何类型转换函数，需要单参数构造函数时应使用 explicit 关键字阻止隐式类型转换。
+
 ### Distinguish between prefix and postfix forms of increment and decrement operators
+
 ### Never overload `&&`, `||`, or `,`
 ### Understand the different meanings of new and delet
 
