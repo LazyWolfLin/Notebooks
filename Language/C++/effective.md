@@ -493,8 +493,20 @@ std::make_shared 能够减少内存分配次数，即资源对象和控制块在
 
 ### When using the Pimpl Idiom, define special member functions in the implementation file.
 
+C++11 中可使用智能指针实现 [Pimpl](https://en.cppreference.com/w/cpp/language/pimpl) 设计。
+
+使用 std::unique_ptr 实现 Pimpl 时，需要在类的头文件中显式声明特殊成员函数并在实现中实现它们。这是由于 std::unique_ptr 的删除器要求对象必须是完整类型，因此需要拥有 impl 完整定义后才能生成删除器，生成删除器后才能实现类的析构函数。
+
+使用 std::shared_ptr 则没有类似问题，因为 std::shared_ptr 的删除器不要求对象是完整类型。
+
 ## Rvalue References, Move Semantics, and Perfect Forwarding
+
 ### Understand std::move and std::forward.
+
+std::move 和 std::forward 都只是强制类型转换的函数，std::move 将实参转换成右值，std::forward 在特定条件满足时执行同一个强制转换。
+
+如果想要对某个对象进行移动操作，就不能将其声明为常量，因为针对常量的移动操作将被变成复制操作。
+
 ### Distinguish universal references from rvalue references.
 ### Use std::move on rvalue references, std::forward on universal references.
 ### Avoid overloading on universal references.
