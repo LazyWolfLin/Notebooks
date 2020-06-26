@@ -385,8 +385,8 @@ f(expr);
 
 在编译期时，编译器会根据 `expr` 推导出两个类型：`T` 和 `ParamType`。由于 `ParamType` 可能包含一些类型限定符，所以两个类型往往不一致。类型推导时，首先根据 `expr` 推导出 `ParamType`，再由 `ParamType` 推导出 `T`。根据 `ParamType` 形式的不同可分为三种情况：
 
-* `ParamType` 是指针或引用，但不是 Universal Reference
-* `ParamType` 是 Universal Reference
+* `ParamType` 是指针或引用，但不是 Forwarding Reference
+* `ParamType` 是 Forwarding Reference
 * `ParamType` 不是指针也不是引用
 
 ### Understand auto type deduction.
@@ -507,10 +507,20 @@ std::move 和 std::forward 都只是强制类型转换的函数，std::move 将�
 
 如果想要对某个对象进行移动操作，就不能将其声明为常量，因为针对常量的移动操作将被变成复制操作。
 
-### Distinguish universal references from rvalue references.
-### Use std::move on rvalue references, std::forward on universal references.
-### Avoid overloading on universal references.
-### Familiarize yourself with alternatives to overloading on universal references.
+### Distinguish forwarding references from rvalue references.
+
+`Type&&` 可能是一个右值引用的声明，而在遇到类型推导时则可能是一个转发引用。
+
+转发引用（Forwarding Reference）：在类型推导时，类型 `Type&&` 意为着根据初始化物推导具体引用类型，初始化物为左值时推导为左值引用，初始化物为右值时推导为右值引用。
+
+### Use std::move on rvalue references, std::forward on forwarding references.
+
+在右值引用的最后一次使用时使用 `std::move`，在对转发引用的最后一次使用时使用 `std::forward`。
+
+返回值优化（Return Value Optimization）：当局部对象类型与函数返回值类型相同并且返回的就是局部对象本身，那么编译器可以在按值返回的函数中省略从局部对象到函数返回值的复制或移动操作，即直接在为函数返回值分配的内存上创建局部对象。
+
+### Avoid overloading on forwarding references.
+### Familiarize yourself with alternatives to overloading on forwarding references.
 ### Understand reference collapsing.
 ### Assume that move operations are not present, not cheap, and not used.
 ### Familiarize yourself with perfect forwarding failure cases.
