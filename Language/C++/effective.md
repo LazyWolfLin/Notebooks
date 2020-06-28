@@ -520,8 +520,23 @@ std::move 和 std::forward 都只是强制类型转换的函数，std::move 将�
 返回值优化（Return Value Optimization）：当局部对象类型与函数返回值类型相同并且返回的就是局部对象本身，那么编译器可以在按值返回的函数中省略从局部对象到函数返回值的复制或移动操作，即直接在为函数返回值分配的内存上创建局部对象。
 
 ### Avoid overloading on forwarding references.
+
+不应当使用转发引用重载函数，尤其是构造函数，否则将会在出乎意料地时候被调用，比如本可被隐式转换到特化版本重载函数的调用，本应调用复制构造函数的初始化物为非常量左值的调用，派生类中对基类的复制和移动构造函数的调用。
+
 ### Familiarize yourself with alternatives to overloading on forwarding references.
+
 ### Understand reference collapsing.
+
+C++ 不允许声明引用的引用，但编译器可以在特殊语境中生成双重引用，并在引用折叠机制下将双重引用折叠为单个引用。C++ 的折叠机制为：如果任一引用为左值引用，则结果为左值引用；如果全部引用都是右值引用，则结果为右值引用。
+
+编译器生成双重引用特殊语境有四种：
+1. 模板实例化：实参为左值，形参为转发引用 `T&&`，`T` 被推导为左值引用 `T&`，形参被推导为双重引用 `T& &&`。
+2. `auto` 变量的类型生成：实参为左值，形参为右值引用 `auto&&`，推导结果同上。
+3. 生成和使用 typedef 和别名声明。
+4. decltype 的类型推导。
+
+转发引用实质上是在类型推导过程中会区分左值和右值并且会发生引用折叠的右值引用。
+
 ### Assume that move operations are not present, not cheap, and not used.
 ### Familiarize yourself with perfect forwarding failure cases.
 
