@@ -531,18 +531,32 @@ C++ 不允许声明引用的引用，但编译器可以在特殊语境中生成�
 
 编译器生成双重引用特殊语境有四种：
 1. 模板实例化：实参为左值，形参为转发引用 `T&&`，`T` 被推导为左值引用 `T&`，形参被推导为双重引用 `T& &&`。
-2. `auto` 变量的类型生成：实参为左值，形参为右值引用 `auto&&`，推导结果同上。
-3. 生成和使用 typedef 和别名声明。
-4. decltype 的类型推导。
+1. `auto` 变量的类型生成：实参为左值，形参为右值引用 `auto&&`，推导结果同上。
+1. 生成和使用 typedef 和别名声明。
+1. decltype 的类型推导。
 
 转发引用实质上是在类型推导过程中会区分左值和右值并且会发生引用折叠的右值引用。
 
 ### Assume that move operations are not present, not cheap, and not used.
+
+某些情况下，移动语义并不能够提供优化：
+1. 对象并不提供移动操作
+1. 对象的移动操作不比复制操作快
+1. 移动操作不具有特殊语境需求而不可用，比如要求异常安全而移动操作没有 `noexcept` 声明
+1. 对象是一个左值，除了返回值优化等特殊情况，一般只有右值可以作为移动操作的对象。
+
 ### Familiarize yourself with perfect forwarding failure cases.
 
 ## Lambda Expressions
+
 ### Avoid default capture modes.
+
+使用默认捕获需要明确了解被捕获物的真正生命周期，按引用捕获可能由于被捕获物的析构而变成空悬指针，按值捕获的指针可能由于指向对象的析构而变成空悬指针。
+
 ### Use init capture to move objects into closures.
+
+C++ 11 不支持移动捕获，但可以使用 `std::bind` 绑定右值作为参数代替移动捕获。C++ 14 则支持初始化捕获，可以将对象移入闭包。
+
 ### Use decltype on auto&& parameters to std::forward them.
 ### Prefer lambdas to std::bind.
 
