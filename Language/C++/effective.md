@@ -558,11 +558,19 @@ C++ 不允许声明引用的引用，但编译器可以在特殊语境中生成�
 C++ 11 不支持移动捕获，但可以使用 `std::bind` 绑定右值作为参数代替移动捕获。C++ 14 则支持初始化捕获，可以将对象移入闭包。
 
 ### Use decltype on auto&& parameters to std::forward them.
+
 ### Prefer lambdas to std::bind.
 
 ## The Concurrency API
+
 ### Prefer task-based programming to thread-based.
+
+使用基于线程模型的 `std::thread` 需要考虑线程耗尽、线程切换、负载均衡等问题，使用基于任务模型的 `std::async` 则无需。
+
 ### Specify std::launch::async ifasynchronicityis essential.
+
+`std::async` 的默认策略既允许任务以异步执行也允许任务惰性执行，具体执行方式取决于运行时调度。
+
 ### Make std::threads unjoinable on all paths.
 ### Be aware of varying thread handle destructor behavior.
 ### Consider voi_d futures for one-shot event communication.
