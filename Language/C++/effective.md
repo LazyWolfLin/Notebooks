@@ -453,7 +453,7 @@ constexpr 对象都具有 const 属性，并由编译期已知的值完成初始
 
 ### Make const member functions thread safe.
 
-即使在 const 成员函数中，也会有可变状态的更新，如修改 mutable 成员变量，使用 const_cast。因此，const 成员函数也需要线程安全性保证，除非可以确信它们不会用于并发语境中。
+即使在 const 成员函数中，也会有可变状态的更新，如修改 mutable 成员变量，使用 const_cast。因此，const 成员函数也需要线程安全性保证，除非可以确信它们不会用于并发语境中。也就是说，如果同时调用同一对象的多个成员函数，那么只有当这些函数都是线程安全的 const 函数时才是安全的。
 
 在性能上，std::atomic 可能优于 std::mutex，但它仅适用于单个变量或内存区域的操作。
 
@@ -572,10 +572,23 @@ C++ 11 不支持移动捕获，但可以使用 `std::bind` 绑定右值作为参
 `std::async` 的默认策略既允许任务以异步执行也允许任务惰性执行，具体执行方式取决于运行时调度。
 
 ### Make std::threads unjoinable on all paths.
+
+在 `std::thread` 析构时调用 join 可能导致性能异常，而调用 detach 则可能导致未定义行为。因此，析构时如果 `std::thread::joinable() == true` 则将抛出 `std::terminate()`。
+
 ### Be aware of varying thread handle destructor behavior.
-### Consider voi_d futures for one-shot event communication.
-### Use std::atoni.c for concurrency, volatile for special memory.
+
+### Consider void futures for one-shot event communication.
+
+### Use std::atomic for concurrency, volatile for special memory.
+
+`std::atomic` 用于在无互斥量保护下保证多线程访问的数据的原子性，在编写并发程序时使用；`volatile` 则用于读写不可以被优化的内存，在处理特殊内存时使用。特殊内存是指编译器将保留对它的冗余读写的内存，常见于用于内存映射 I/O 的内存。
 
 ## Tweaks
+
 ### Consider pass by value for copyable parameters that are cheap to move and always copied.
+
+在 C++98 中，当形参为左值时，无论实参是左值还是右值都将发生拷贝。而在 C++11 中，当形参为左值时，只有实参为左值时才发生拷贝，而实参为右值时只发生移动。
+
+在 C++11 中，有左值右值区分后，有时需要考虑对左值右值实参提供不同的函数，比如对左值实参提供左值引用形参而对右值实参提供右值引用并在函数中调用 `std::move`。因此对于一个常见的特殊情况，可以考虑使用左值形参进行按值传递：可复制（不可复制的形参则仅需要考虑右值）且移动成本低的形参，在一定会被复制的前提下，考虑使用左值形参进行按值传递。
+
 ### Consider emplacement instead of insertion.
