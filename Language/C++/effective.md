@@ -332,7 +332,14 @@ C++ 中有两类类型转换函数，单参数构造函数和隐式类型转换�
 ### Distinguish between prefix and postfix forms of increment and decrement operators
 
 ### Never overload `&&`, `||`, or `,`
+
+某些运算符无论如何重载都会破坏其原有行为，比如重载 `&&` 或 `||` 会破坏逻辑短路，重载 `,` 会破坏逗号表达式。
+
 ### Understand the different meanings of new and delet
+
+* `new`: 调用对象的 `operator new` 分配内存并调用对象的 `coustructor`。
+* `operator new`: 分配内存但不调用对象的 `coustructor`。
+* `placement new`: 在已分配的内存上调用对象的 `coustructor`。
 
 ## Exceptions
 
