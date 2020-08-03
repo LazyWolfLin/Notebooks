@@ -343,12 +343,33 @@ C++ 中有两类类型转换函数，单参数构造函数和隐式类型转换�
 
 ## Exceptions
 
+使用 exception 的关键原因在于 exception 无法被忽略，当函数抛出的 exception 未被捕获时程序就将终止。
+
 ### Use destructors to prevent resource leaks
+
+使用 smart pointer 代替 bare pointer 可以防止函数抛出 exception 时 pointer 未被 delete 导致的资源泄漏。
+
 ### Prevent resource leaks in constructors
+
+当 constructor 中抛出 exception 时，需要在 constructor 中主动释放已获得的资源，因为 C++ 不会调用 destructor 析构不完整的对象实例。一个比较好的解决方案是通过 smart pointer 来管理资源，一旦抛出 exception 时将自动析构已构造完成的 smart pointer，从而防止 constructor 中产生资源泄漏。
+
 ### Prevent exceptions from leaving destructors
+
+当 destructor 抛出 exception 时，如果调用栈上存在另一个 exception，即 destructor 的调用源于另一个 exception，那么 C++ 将调用 terminate 结束整个程序。此外，destructor 抛出 exception 可能还意味着 destructor 没完成全部任务。
+
 ### Understand how throwing an exception differs from passing a parameter or calling a virtual function
 ### Catch exceptions by reference
+
+捕获 exception 有三种不同的形式，catch by pointer，catch by value，catch by reference，但排除各种可能出现的问题后，便只能选择 catch by reference。
+
+Catch by pointer 是最快的方式，但 pointer 可能由于疏忽而指向一个已析构的对象。即使指向一个未析构的对象，使用完后也无法确定是否需要 delete 它，因为 pointer 可能指向一个不能 delete 的 global 对象或者 static 对象，也可能指向一个需要 delete 的堆对象。最后一个问题是标准 exception 都是对象而非指针，无法 Catch by pointer。
+
+Catch by value 没有 by pointer 的这些问题，但是它会发生两次拷贝。而且如果使用基类捕获一个派生类，那么将发生切割问题，即第二次拷贝时仅拷贝基类。
+
 ### Use exception specifications judiciously
+
+C++11 中，只关心函数是否会抛出异常的 noexcept 取代了复杂而易错的 exception specification。
+
 ### Understand the costs of exception handling
 
 ## Efficiency
