@@ -9,9 +9,11 @@ Paul Butcher. Seven Concurrency Models in Seven Weeks
 
 由于 CPU 多核化成为计算机性能提升的发展方向，为了更好地挖掘多核 CPU 性能，并行（Parallelism）和并发（Concurrency）就是解决之道。
 
-并行是方法域中的概念，通过将问题中多个部分并行执行，来加速解决问题。并发是问题域中的概念，程序需要能够处理多个同时（或者几乎同时）发生的事情。
+并发是问题域中的概念，程序需要能够处理多个同时（或者几乎同时）发生的事情。并行是方法域中的概念，通过将问题中多个部分并行执行，来加速解决问题。
 
-并行程序解决问题地速度往往比串行程序快得多，因为可以同时执行整个任务的多个部分。并行程序可能含有多个独立的逻辑执行块，也可能仅有一个。而并发程序则含有多个独立的逻辑执行块，它们既可独立地并行执行，也可用串行执行。
+并发程序含有多个独立的逻辑执行块，它们既可独立地并行执行，也可用串行执行。并行程序可能含有多个独立的逻辑执行块，也可能仅有一个，但可以同时执行整个任务的多个部分。
+
+### Concurrency
 
 ### Parallelism
 
@@ -20,8 +22,6 @@ Paul Butcher. Seven Concurrency Models in Seven Weeks
 * Instruction-Level Parallelism
 * Data Parallelism
 * Task-Level Parallelism
-
-### Concurrency
 
 ## Threads and Mutex
 
@@ -35,21 +35,27 @@ https://en.cppreference.com/w/cpp/language/memory_model
 
 ### Mutual exclusion
 
-互斥锁
+#### Mutex
+#### Condition variables
+#### 信号量
 
-### 死锁
+### 并发问题
+
+#### 死锁
 
 哲学家问题
 
 解决方法：按照一个全局固定的顺序获取多把锁。
 
-### Condition variables
+### 非死锁
 
 ### Atomic value
 
 ### Thread pool
 
 ## Functional Programming
+
+函数式编程没有可变状态，很容易做到线程安全，所以可以直接支持并行。 
 
 ## The Clojure Way—Separating Identity from State
 

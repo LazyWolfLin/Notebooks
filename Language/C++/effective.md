@@ -463,7 +463,7 @@ C++ 的隐式代理类，比如 `std::vector<bool>::reference`，会导致 `auto
 
 在 C++98 中，为了阻止特殊成员函数被调用，通常将其声明为 private 并不定义它们。而 C++11 则提供了弃置函数定义，显式声明该函数不可用。而且弃置函数不仅能用于删除特殊成员函数，还可以删除普通成员函数、非成员函数、函数模板具现。
 
-### Declare overriding functions overri.de.
+### Declare overriding functions override.
 
 C++ 的虚函数重写（override）要求基类与派生类具有完全相同函数签名的虚函数，即函数名称、函数形参、函数常量性、函数返回值、函数异常、函数引用饰词都需要完全相同的虚函数。C++11 提供了 override 和 final 声明，用于声明派生类函数重写基类虚函数和阻止派生类重写基类虚函数。
 
