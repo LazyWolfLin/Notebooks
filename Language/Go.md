@@ -27,6 +27,8 @@ $ go run hello_world.go
 Hello, World!
 ```
 
+## Future
+
 ## Resource
 
 * [The Go Programming Language](https://golang.org/)
