@@ -24,6 +24,8 @@ In static typing, all expressions have their types determined prior to when the 
 
 Weak typing allows a value of one type to be treated as another, but strong typing not.
 
+#### Type safety
+
 ### Standard library
 
 Most programming languages have an associated core library (sometimes known as the 'standard library', especially if it is included as part of the published language standard), which is conventionally made available by all implementations of the language. Core libraries typically include definitions for commonly used algorithms, data structures, and mechanisms for input and output.
